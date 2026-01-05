@@ -1,173 +1,80 @@
 'use client';
 
-import React, { useRef, useState, useEffect } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Github, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 
 interface ProjectProps {
-    title: string;
-    category: string;
-    image: string;
-    description: string;
-    tech: string[];
-    demoLink: string;
-    repoLink: string;
-    size?: string;
+    project: {
+        id: number;
+        title: string;
+        description: string;
+        tech: string[];
+        image: string | null;
+        links: {
+            demo?: string | null;
+            repo?: string | null;
+        };
+    };
+    index: number
 }
 
-// 1. Varian untuk animasi masuk (Child dari Stagger)
-const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    show: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.5
-        }
-    }
-};
-
-const ProjectCard = ({ title, category, image, description, tech, demoLink, repoLink, size }: ProjectProps) => {
-    const isLarge = size === 'large';
-
-    // Detect touch device to disable 3D tilt
-    const [isTouchDevice, setIsTouchDevice] = useState(false);
-    useEffect(() => {
-        setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
-    }, []);
-
-    // === LOGIKA 3D TILT ===
-    const ref = useRef<HTMLDivElement>(null);
-
-    // Nilai posisi mouse (x, y) relative ke tengah kartu
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
-
-    const mouseXSpring = useSpring(x);
-    const mouseYSpring = useSpring(y);
-
-    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["15deg", "-15deg"]);
-    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-15deg", "15deg"]);
-
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (!ref.current) return;
-
-        const rect = ref.current.getBoundingClientRect();
-
-        const width = rect.width;
-        const height = rect.height;
-
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-
-        const xPct = mouseX / width - 0.5;
-        const yPct = mouseY / height - 0.5;
-
-        x.set(xPct);
-        y.set(yPct);
-    };
-
-    const handleMouseLeave = () => {
-        x.set(0);
-        y.set(0);
-    };
-
+const ProjectCard: React.FC<ProjectProps> = ({ project, index }) => {
     return (
-        // WRAPPER LUAR: Mengurus animasi Stagger (Muncul)
         <motion.div
-            variants={itemVariants}
-            className={`${isLarge ? 'md:col-span-2' : 'col-span-1'} h-full`}
-            style={{ perspective: 1000 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1, duration: 0.5 }}
+            viewport={{ once: true }}
+            className="group relative flex flex-col h-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-300"
         >
-
-            {/* WRAPPER DALAM: Mengurus animasi Tilt 3D */}
-            <motion.div
-                ref={ref}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-                style={{
-                    rotateX,
-                    rotateY,
-                    transformStyle: "preserve-3d",
-                }}
-                // === UPDATE CSS DISINI (SUPPORT DARK & LIGHT) ===
-                className={`
-          group relative h-full overflow-hidden rounded-3xl 
-          
-          /* MODE LIGHT (Default) */
-          bg-white border border-slate-200 shadow-sm
-          
-          /* MODE DARK */
-          dark:bg-slate-900 dark:border-slate-800 dark:shadow-none
-
-          /* HOVER EFFECTS */
-          hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-500/10 
-          transition-all duration-300 flex flex-col 
-          ${isLarge ? 'md:flex-row' : ''} 
-        `}
-            >
-
-                {/* BAGIAN GAMBAR */}
-                <div
-                    className={`relative overflow-hidden bg-slate-200 dark:bg-slate-800 ${isLarge ? 'w-full md:w-1/2 min-h-[280px]' : 'w-full h-64'}`}
-                    style={!isTouchDevice ? { transform: "translateZ(50px)" } : undefined}
-                >
+            {/* Gambar Project */}
+            <div className="relative w-full h-48 overflow-hidden bg-slate-100 dark:bg-slate-800">
+                <div className="absolute inset-0 flex items-center justify-center text-slate-300">
+                    {/* Placeholder Gambar */}
                     <Image
-                        src={image}
-                        alt={`${title} - ${category} project showcase`}
+                        src={project.image || '/placeholder.png'} // <--- GANTI JADI INI
+                        alt={project.title}
                         fill
-                        sizes={isLarge ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, 33vw"}
-                        className="object-cover opacity-90 dark:opacity-80 group-hover:scale-110 transition-transform duration-500"
-                        priority={isLarge}
-                        quality={85}
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    {/* Overlay Gelap hanya muncul saat Hover di Light Mode, atau selalu ada di Dark Mode */}
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 dark:bg-black/10 dark:group-hover:bg-transparent transition-all duration-300 z-10" />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            </div>
+
+            {/* Konten Text */}
+            <div className="flex flex-col flex-grow p-6">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-indigo-500 transition-colors">
+                    {project.title}
+                </h3>
+                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                    {project.description}
+                </p>
+
+                {/* Pills Tech Stack */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                    {project.tech.map((tech) => (
+                        <span key={tech} className="px-3 py-1 text-xs font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/80 rounded-full border border-slate-200 dark:border-slate-700">
+                            {tech}
+                        </span>
+                    ))}
                 </div>
 
-                {/* BAGIAN KONTEN */}
-                <div
-                    className={`p-6 flex flex-col justify-between ${isLarge ? 'w-full md:w-1/2' : 'w-full'}`}
-                    style={{ transform: "translateZ(20px)" }}
-                >
-                    <div>
-                        <div className="flex items-center justify-between mb-4">
-                            <span className="text-[10px] font-bold tracking-wider text-indigo-600 dark:text-indigo-400 uppercase bg-indigo-50 dark:bg-indigo-500/10 px-2 py-1 rounded-md border border-indigo-200 dark:border-indigo-500/20">
-                                {category}
-                            </span>
-                        </div>
-
-                        {/* JUDUL: Hitam di Light, Putih di Dark */}
-                        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">
-                            {title}
-                        </h3>
-
-                        {/* DESKRIPSI: Abu gelap di Light, Abu terang di Dark */}
-                        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed line-clamp-3 mb-6">
-                            {description}
-                        </p>
-
-                        {/* TECH BADGES */}
-                        <div className="flex flex-wrap gap-2 mb-6">
-                            {tech.slice(0, 4).map((t, i) => (
-                                <span key={i} className="text-[10px] text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2 py-1 rounded-full">
-                                    {t}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-
-                    <div className="flex gap-5 pt-4 border-t border-slate-200 dark:border-slate-800 mt-auto">
-                        <a href={demoLink} className="text-sm font-semibold text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center gap-2 transition-colors">
-                            Live Demo
-                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                {/* Tombol Link */}
+                <div className="flex items-center gap-4 pt-4 border-t border-slate-100 dark:border-slate-800 mt-auto">
+                    {project.links.repo && (
+                        <a href={project.links.repo} target="_blank" className="flex items-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                            <Github className="w-4 h-4" /> Code
                         </a>
-                        <a href={repoLink} className="text-sm font-semibold text-slate-500 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
-                            Source Code
+                    )}
+                    {project.links.demo && (
+                        <a href={project.links.demo} target="_blank" className="flex items-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                            <ExternalLink className="w-4 h-4" /> Live Demo
                         </a>
-                    </div>
+                    )}
                 </div>
-            </motion.div>
+            </div>
         </motion.div>
     );
 };

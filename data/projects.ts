@@ -1,37 +1,35 @@
-// src/data/projects.ts
-
 export const projects = [
     {
         id: 1,
-        title: "E-Commerce Bakpia Jogja",
-        category: "Fullstack Laravel", // Kategori untuk HR
-        image: "/project-1.jpg",      // Nanti kita siapkan gambarnya
-        tech: ["Laravel 10", "MySQL", "Midtrans", "FilamentPHP", "Tailwind"],
-        description: "Sistem e-commerce end-to-end untuk UMKM lokal. Mengelola stok real-time, pembayaran otomatis via Midtrans, dan dashboard admin analitik.",
-        demoLink: "#",                // Link demo (jika ada)
-        repoLink: "#",                // Link GitHub
-        size: "large",                // <--- PENTING: Ini yang membuat kotak ini menjadi BESAR (2 kolom)
+        title: "Khas Jogja Store",
+        description: "A digital marketplace empowering local MSMEs (UMKM) in Yogyakarta to sell authentic souvenirs. Features include S3-compatible cloud storage for assets, real-time product search, and a seamless checkout experience hosted on a scalable PaaS infrastructure.",
+        tech: ["Laravel", "Tailwind CSS", "DigitalOcean App Platform", "S3 Storage"],
+        image: "/project1.jpeg",
+        links: {
+            demo: "https://khas-jogja-store-r5fzs.ondigitalocean.app/",
+            repo: null // Repo private/client
+        }
     },
     {
         id: 2,
-        title: "Corporate Data Dashboard",
-        category: "Data Analytics",
-        image: "/project-2.jpg",
-        tech: ["Python", "Pandas", "React.js", "Recharts"],
-        description: "Dashboard visualisasi data interaktif untuk memantau KPI penjualan dan tren musiman perusahaan secara real-time.",
-        demoLink: "#",
-        repoLink: "#",
-        size: "small",                // Kotak ukuran standar
+        title: "Simply Haircut Platform",
+        description: "An integrated booking and academy platform for a premium barbershop. The system allows customers to book specific hair artists and services, while also serving as an educational hub for the Simply Haircut Academy.",
+        tech: ["Laravel", "MySQL", "JavaScript", "Bootstrap"],
+        image: "/project2.jpeg",
+        links: {
+            demo: "https://simplyhaircut.id/",
+            repo: null // Repo private/client
+        }
     },
     {
         id: 3,
-        title: "Inventory Management SaaS",
-        category: "Web Application",
-        image: "/project-3.jpg",
-        tech: ["Next.js 14", "TypeScript", "Prisma ORM", "Supabase"],
-        description: "Aplikasi pencatatan barang masuk/keluar dengan fitur scan barcode dan export laporan PDF otomatis.",
-        demoLink: "#",
-        repoLink: "#",
-        size: "small",                // Kotak ukuran standar
-    },
+        title: "Modern Personal Portfolio",
+        description: "My personal professional showcase built with performance and interactivity in mind. Utilizing a Bento-grid layout to organize content effectively, featuring smooth page transitions and a highly responsive design for all devices.",
+        tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+        image: null,
+        links: {
+            demo: "#", // Link ke diri sendiri (atau kosongkan jika belum deploy)
+            repo: "https://github.com/username/portfolio" // Boleh diisi jika mau open source
+        }
+    }
 ];

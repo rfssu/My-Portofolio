@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const coreStack = [
-    "Laravel 10", "Next.js 15", "React", "TypeScript", "Tailwind CSS",
+    "Laravel", "Next.js", "React", "TypeScript", "Tailwind CSS",
     "FilamentPHP", "MySQL", "PostgreSQL"
 ];
 
