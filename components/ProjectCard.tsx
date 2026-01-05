@@ -17,7 +17,13 @@ interface ProjectProps {
 // 1. Varian untuk animasi masuk (Child dari Stagger)
 const itemVariants = {
     hidden: { opacity: 0, y: 50 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+    show: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.5
+        }
+    } as const
 };
 
 const ProjectCard = ({ title, category, image, description, tech, demoLink, repoLink, size }: ProjectProps) => {

@@ -28,14 +28,14 @@ const TechStack = () => {
                     animate={{ x: ["0%", "-50%"] }} // Bergerak dari 0 ke -50% (karena kita duplikasi listnya)
                     transition={{
                         repeat: Infinity,
-                        ease: "linear",
+                        ease: [0, 0, 1, 1], // linear easing
                         duration: 20 // Kecepatan (makin besar makin lambat)
                     }}
                 >
                     {/* Render List Skill 2 kali untuk efek infinite loop */}
                     {[...skills, ...skills].map((item, index) => (
                         <span
-                            key={index}
+                            key={`tech-${index}`}
                             className="text-2xl md:text-4xl font-bold text-slate-700 hover:text-indigo-400 transition-colors cursor-default"
                         >
                             {item}
