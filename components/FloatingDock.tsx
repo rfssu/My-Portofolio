@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react'; // <--- 1. Tambah useState & useEffect
+import { useRef, useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import {
     Home,
@@ -15,11 +15,8 @@ import {
 
 export default function FloatingDock() {
     const { theme, setTheme } = useTheme();
-
-    // 2. State untuk memastikan komponen sudah 'mounted' di browser
     const [mounted, setMounted] = useState(false);
 
-    // 3. Efek ini hanya jalan di client, memberitahu bahwa hydration selesai
     useEffect(() => {
         setMounted(true);
     }, []);
@@ -48,11 +45,11 @@ export default function FloatingDock() {
     };
 
     return (
-        <div className="fixed bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-50 scale-75 sm:scale-90 md:scale-100">
+        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
             <motion.div
                 onMouseMove={(e) => mouseX.set(e.pageX)}
                 onMouseLeave={() => mouseX.set(Infinity)}
-                className="flex h-14 sm:h-16 items-end gap-2 sm:gap-3 rounded-2xl bg-white/10 dark:bg-slate-900/50 border border-slate-200/50 dark:border-slate-800/50 px-3 sm:px-4 pb-2 sm:pb-3 shadow-2xl backdrop-blur-xl"
+                className="flex items-center gap-px bg-black dark:bg-white border border-white/10 dark:border-black/10 p-px"
             >
                 {/* Navigation Links */}
                 {links.map((link) => (
@@ -61,7 +58,7 @@ export default function FloatingDock() {
                     </DockIcon>
                 ))}
 
-                <div className="h-8 w-[1px] bg-slate-300 dark:bg-slate-700 mx-1 self-center opacity-50"></div>
+                <div className="h-10 w-px bg-white/10 dark:bg-black/10"></div>
 
                 {/* Social Links */}
                 {socialLinks.map((link) => (
@@ -70,21 +67,18 @@ export default function FloatingDock() {
                     </DockIcon>
                 ))}
 
-                <div className="h-8 w-[1px] bg-slate-300 dark:bg-slate-700 mx-1 self-center opacity-50"></div>
+                <div className="h-10 w-px bg-white/10 dark:bg-black/10"></div>
 
-                {/* Theme Toggle FIX */}
+                {/* Theme Toggle */}
                 <DockIcon
                     mouseX={mouseX}
-                    label="Toggle Theme"
+                    label="Theme"
                     onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                 >
-                    {/* 4. LOGIC PENENTU: Jika belum mounted, jangan render icon apapun (cegah error) */}
                     {!mounted ? (
-                        // Placeholder kosong atau icon default statis (opsional)
                         <div className="w-full h-full bg-transparent" />
                     ) : (
-                        // Jika sudah mounted, baru cek tema
-                        theme === 'dark' ? <Sun className="w-full h-full" /> : <Moon className="w-full h-full text-indigo-500" />
+                        theme === 'dark' ? <Sun className="w-full h-full" /> : <Moon className="w-full h-full" />
                     )}
                 </DockIcon>
 
@@ -101,8 +95,7 @@ function DockIcon({ mouseX, children, label, onClick }: any) {
         return val - bounds.x - bounds.width / 2;
     });
 
-    // Increased minimum size from 40 to 48 for better touch targets (44px+ recommended)
-    const widthTransform = useTransform(distance, [-150, 0, 150], [48, 80, 48]);
+    const widthTransform = useTransform(distance, [-150, 0, 150], [40, 56, 40]);
     const width = useSpring(widthTransform, { mass: 0.1, stiffness: 150, damping: 12 });
 
     return (
@@ -110,12 +103,12 @@ function DockIcon({ mouseX, children, label, onClick }: any) {
             ref={ref}
             style={{ width, height: width }}
             onClick={onClick}
-            className="group relative flex aspect-square cursor-pointer items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-500/20 text-slate-600 dark:text-slate-300 transition-colors"
+            className="group relative flex items-center justify-center cursor-pointer bg-white/5 dark:bg-black/5 hover:bg-white/10 dark:hover:bg-black/10 text-white dark:text-black transition-colors duration-300"
         >
-            <motion.div className="p-2 w-full h-full flex items-center justify-center">
+            <div className="p-2 w-full h-full flex items-center justify-center">
                 {children}
-            </motion.div>
-            <span className="pointer-events-none absolute -top-10 hidden rounded-md bg-slate-900 dark:bg-slate-100 px-2 py-1 text-xs text-slate-100 dark:text-slate-900 opacity-0 transition-opacity group-hover:block group-hover:opacity-100 whitespace-nowrap">
+            </div>
+            <span className="pointer-events-none absolute -top-10 hidden bg-black dark:bg-white px-2 py-1 text-xs text-white dark:text-black opacity-0 transition-opacity duration-300 group-hover:block group-hover:opacity-100 whitespace-nowrap font-mono uppercase tracking-wider">
                 {label}
             </span>
         </motion.div>

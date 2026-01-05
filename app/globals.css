@@ -1,52 +1,60 @@
 @import "tailwindcss";
 
 /* ========================================
-   TAILWIND V4 DARK MODE - CSS-FIRST CONFIG
+   A24 EDITORIAL STYLE - FOUNDATION
+   Monochromatic, Cinema-inspired, Minimal
    ======================================== */
 
 @variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-background: #f8fafc;
-  --color-foreground: #0f172a;
-
-  /* Animation definitions */
-  --animate-gradient-x: gradient-x 3s ease infinite;
-
-  @keyframes gradient-x {
-
-    0%,
-    100% {
-      background-position: 0% 50%;
-    }
-
-    50% {
-      background-position: 100% 50%;
-    }
-  }
+  --color-background: #ffffff;
+  --color-foreground: #000000;
 }
 
 /* ========================================
-   BASE STYLES (CLEAN VERSION)
+   BASE STYLES
    ======================================== */
 
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
-  /* Mencegah horizontal scroll jika ada elemen overflow */
+  font-family: 'Inter', 'Geist Sans', system-ui, -apple-system, sans-serif;
+  letter-spacing: -0.01em;
+  /* Slightly tighter tracking */
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Dark Mode Adjustments */
+/* Dark Mode - Pure Black */
 .dark {
   --color-background: #0B1120;
-  --color-foreground: #ededed;
+  --color-foreground: #ffffff;
 }
 
-/* ========================================
-   UTILITIES
-   ======================================== */
+/* Typography - Tighter for headlines */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing: -0.05em;
+  font-weight: 700;
+}
 
-@utility text-gradient {
-  @apply text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400;
+/* Remove all default transitions */
+* {
+  transition: none;
+}
+
+/* Only allow opacity and transform transitions */
+.transition-opacity,
+.transition-transform,
+.transition-all,
+.transition-colors {
+  transition-property: opacity, transform, color, background-color, border-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
 }

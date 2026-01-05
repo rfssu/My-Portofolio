@@ -23,58 +23,66 @@ interface ProjectProps {
 const ProjectCard: React.FC<ProjectProps> = ({ project, index }) => {
     return (
         <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1, duration: 0.5 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: index * 0.1, duration: 0.6 }}
             viewport={{ once: true }}
-            className="group relative flex flex-col h-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden hover:border-indigo-500/50 hover:shadow-lg hover:shadow-indigo-500/10 transition-all duration-300"
+            className="group relative aspect-[16/9] overflow-hidden bg-black"
         >
-            {/* Gambar Project */}
-            <div className="relative w-full h-48 overflow-hidden bg-slate-100 dark:bg-slate-800">
-                <div className="absolute inset-0 flex items-center justify-center text-slate-300">
-                    {/* Placeholder Gambar */}
-                    <Image
-                        src={project.image || '/placeholder.png'} // <--- GANTI JADI INI
-                        alt={project.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            {/* Project Image - Full Bleed */}
+            <div className="relative w-full h-full">
+                <Image
+                    src={project.image || '/placeholder.png'}
+                    alt={project.title}
+                    fill
+                    className="object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-700"
+                />
             </div>
 
-            {/* Konten Text */}
-            <div className="flex flex-col flex-grow p-6">
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-indigo-500 transition-colors duration-300">
-                    {project.title}
-                </h3>
-                <p className="text-slate-600 dark:text-slate-400 text-base leading-relaxed mb-6 flex-grow">
-                    {project.description}
-                </p>
+            {/* Text Overlay - Bottom */}
+            <div className="absolute inset-0 flex items-end p-8">
+                <div className="w-full">
+                    <h3 className="text-2xl md:text-3xl font-bold uppercase tracking-tighter text-white mb-3">
+                        {project.title}
+                    </h3>
 
-                {/* Pills Tech Stack */}
-                <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tech.map((tech) => (
-                        <span key={tech} className="px-3 py-1 text-xs font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/80 rounded-full border border-slate-200 dark:border-slate-700">
-                            {tech}
-                        </span>
-                    ))}
-                </div>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-4 max-w-lg">
+                        {project.description}
+                    </p>
 
-                {/* Tombol Link */}
-                <div className="flex items-center gap-4 pt-4 border-t border-slate-100 dark:border-slate-800 mt-auto">
-                    {project.links.repo && (
-                        <a href={project.links.repo} target="_blank" className="flex items-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300">
-                            <Github className="w-4 h-4" /> Code
-                        </a>
-                    )}
-                    {project.links.demo && (
-                        <a href={project.links.demo} target="_blank" className="flex items-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300">
-                            <ExternalLink className="w-4 h-4" /> Live Demo
-                        </a>
-                    )}
+                    {/* Tech Stack - Minimal */}
+                    <div className="flex flex-wrap gap-3 text-xs uppercase tracking-widest text-slate-400 mb-4">
+                        {project.tech.slice(0, 3).map((tech) => (
+                            <span key={tech}>{tech}</span>
+                        ))}
+                    </div>
+
+                    {/* Links - Text Only */}
+                    <div className="flex gap-6 text-xs uppercase tracking-widest">
+                        {project.links.repo && (
+                            <a
+                                href={project.links.repo}
+                                target="_blank"
+                                className="text-white hover:text-slate-400 transition-colors duration-300 pb-1 border-b border-transparent hover:border-current"
+                            >
+                                Code →
+                            </a>
+                        )}
+                        {project.links.demo && (
+                            <a
+                                href={project.links.demo}
+                                target="_blank"
+                                className="text-white hover:text-slate-400 transition-colors duration-300 pb-1 border-b border-transparent hover:border-current"
+                            >
+                                Live →
+                            </a>
+                        )}
+                    </div>
                 </div>
             </div>
+
+            {/* Subtle Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80 pointer-events-none"></div>
         </motion.div>
     );
 };
