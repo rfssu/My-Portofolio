@@ -48,11 +48,11 @@ export default function FloatingDock() {
     };
 
     return (
-        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+        <div className="fixed bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-50 scale-75 sm:scale-90 md:scale-100">
             <motion.div
                 onMouseMove={(e) => mouseX.set(e.pageX)}
                 onMouseLeave={() => mouseX.set(Infinity)}
-                className="flex h-16 items-end gap-3 rounded-2xl bg-white/10 dark:bg-slate-900/50 border border-slate-200/50 dark:border-slate-800/50 px-4 pb-3 shadow-2xl backdrop-blur-xl"
+                className="flex h-14 sm:h-16 items-end gap-2 sm:gap-3 rounded-2xl bg-white/10 dark:bg-slate-900/50 border border-slate-200/50 dark:border-slate-800/50 px-3 sm:px-4 pb-2 sm:pb-3 shadow-2xl backdrop-blur-xl"
             >
                 {/* Navigation Links */}
                 {links.map((link) => (
@@ -101,7 +101,8 @@ function DockIcon({ mouseX, children, label, onClick }: any) {
         return val - bounds.x - bounds.width / 2;
     });
 
-    const widthTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
+    // Increased minimum size from 40 to 48 for better touch targets (44px+ recommended)
+    const widthTransform = useTransform(distance, [-150, 0, 150], [48, 80, 48]);
     const width = useSpring(widthTransform, { mass: 0.1, stiffness: 150, damping: 12 });
 
     return (

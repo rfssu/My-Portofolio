@@ -8,6 +8,7 @@ import FloatingDock from '@/components/FloatingDock'; // <--- Import Dock Baru
 // Hapus import ThemeToggle
 import { projects } from '@/data/projects';
 import { motion } from 'framer-motion';
+import ContactCTA from '@/components/ContactCTA';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -22,26 +23,26 @@ export default function Home() {
       <FloatingDock />
 
       {/* Tambahkan ID 'hero' disini agar tombol Home berfungsi */}
-      <div id="hero" className="container mx-auto px-6 md:px-12">
+      <div id="hero" className="container mx-auto px-4 sm:px-6 md:px-12">
         <Hero />
       </div>
 
       <TechStack />
 
-      <div className="container mx-auto px-6 md:px-12 pb-24 md:pb-32"> {/* Tambah padding bottom agar konten paling bawah tidak ketutup Dock */}
+      <div className="container mx-auto px-4 sm:px-6 md:px-12 pb-24 sm:pb-28 md:pb-32">
 
-        <section id="projects" className="pt-20">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
+        <section id="projects" className="pt-12 sm:pt-16 md:pt-20">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-8 md:mb-10 gap-4">
             <div>
-              <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Selected Work</h2>
-              <p className="text-slate-600 dark:text-slate-400 max-w-lg">
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-2">Selected Work</h2>
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-lg">
                 Proyek pilihan dengan interaksi modern.
               </p>
             </div>
           </div>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[minmax(0,1fr)]"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 auto-rows-[minmax(0,1fr)]"
             variants={containerVariants}
             initial="hidden"
             whileInView="show"
@@ -57,6 +58,9 @@ export default function Home() {
         <section id="experience">
           <Experience />
         </section>
+
+        {/* --- PASANG CTA DISINI --- */}
+        <ContactCTA />
 
         <footer className="py-10 text-center text-slate-500 text-sm mt-10 border-t border-slate-200 dark:border-slate-800/50">
           <p>© {new Date().getFullYear()} Built with Next.js & Tailwind CSS.</p>

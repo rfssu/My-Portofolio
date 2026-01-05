@@ -4,15 +4,13 @@
    TAILWIND V4 DARK MODE - CSS-FIRST CONFIG
    ======================================== */
 
-/* CRITICAL: Define dark variant for class-based dark mode */
 @variant dark (&:where(.dark, .dark *));
 
-/* Theme Variables for Light Mode (Default) */
 @theme {
   --color-background: #f8fafc;
   --color-foreground: #0f172a;
 
-  /* Animation */
+  /* Animation definitions */
   --animate-gradient-x: gradient-x 3s ease infinite;
 
   @keyframes gradient-x {
@@ -28,19 +26,107 @@
   }
 }
 
-/* Apply theme to body */
+/* ========================================
+   BASE STYLES & GRAIN ENGINE
+   ======================================== */
+
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
+  position: relative;
+  /* Mencegah horizontal scroll jika ada elemen overflow */
+  overflow-x: hidden;
 }
 
-/* Dark Mode Override (when .dark class is on html/body) */
+/* GRAIN OVERLAY (CSS ONLY VERSION) */
+body::before {
+  content: "";
+  position: fixed;
+  /* KUNCI: Buat overlay jauh lebih besar dari layar agar saat gerak tidak putus */
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+
+  pointer-events: none;
+  z-index: 9999;
+
+  /* Opacity awal (Light Mode) */
+  opacity: 0.04;
+
+  /* SVG Noise Pattern */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 150px 150px;
+
+  /* Teknik Blending agar noise terlihat natural menyatu dengan warna */
+  mix-blend-mode: overlay;
+
+  /* Animasi */
+  animation: grain 7s steps(10) infinite;
+}
+
+/* Dark Mode Adjustments */
 .dark {
   --color-background: #0B1120;
   --color-foreground: #ededed;
 }
 
-/* Custom Utility */
+/* Di Dark Mode, grain harus sedikit lebih tebal & blending mode beda agar terlihat */
+.dark body::before {
+  opacity: 0.07;
+  mix-blend-mode: hard-light;
+  /* atau overlay, tergantung selera */
+}
+
+/* ========================================
+   ANIMATIONS & UTILITIES
+   ======================================== */
+
+@keyframes grain {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  10% {
+    transform: translate(-5%, -5%);
+  }
+
+  20% {
+    transform: translate(-10%, 5%);
+  }
+
+  30% {
+    transform: translate(5%, -10%);
+  }
+
+  40% {
+    transform: translate(-5%, 10%);
+  }
+
+  50% {
+    transform: translate(-10%, 5%);
+  }
+
+  60% {
+    transform: translate(10%, 0%);
+  }
+
+  70% {
+    transform: translate(0%, 10%);
+  }
+
+  80% {
+    transform: translate(5%, 15%);
+  }
+
+  90% {
+    transform: translate(-5%, 5%);
+  }
+}
+
 @utility text-gradient {
   @apply text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400;
 }

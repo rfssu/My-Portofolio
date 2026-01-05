@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import Image from 'next/image';
 
 interface ProjectProps {
     title: string;
@@ -28,6 +29,12 @@ const itemVariants = {
 
 const ProjectCard = ({ title, category, image, description, tech, demoLink, repoLink, size }: ProjectProps) => {
     const isLarge = size === 'large';
+
+    // Detect touch device to disable 3D tilt
+    const [isTouchDevice, setIsTouchDevice] = useState(false);
+    useEffect(() => {
+        setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    }, []);
 
     // === LOGIKA 3D TILT ===
     const ref = useRef<HTMLDivElement>(null);
@@ -103,21 +110,19 @@ const ProjectCard = ({ title, category, image, description, tech, demoLink, repo
                 {/* BAGIAN GAMBAR */}
                 <div
                     className={`relative overflow-hidden bg-slate-200 dark:bg-slate-800 ${isLarge ? 'w-full md:w-1/2 min-h-[280px]' : 'w-full h-64'}`}
-                    style={{ transform: "translateZ(50px)" }}
+                    style={!isTouchDevice ? { transform: "translateZ(50px)" } : undefined}
                 >
-                    {/* Placeholder Background: Terang di Light, Gelap di Dark */}
-                    <div className="absolute inset-0 bg-slate-200 dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-900 flex items-center justify-center">
-                        <span className="text-slate-400 dark:text-slate-600 font-mono text-xs tracking-widest">PREVIEW</span>
-                    </div>
-
-                    <img
+                    <Image
                         src={image}
-                        alt={title}
-                        className="absolute inset-0 w-full h-full object-cover opacity-90 dark:opacity-80 group-hover:scale-110 transition-transform duration-500"
-                        onError={(e) => e.currentTarget.style.display = 'none'}
+                        alt={`${title} - ${category} project showcase`}
+                        fill
+                        sizes={isLarge ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, 33vw"}
+                        className="object-cover opacity-90 dark:opacity-80 group-hover:scale-110 transition-transform duration-500"
+                        priority={isLarge}
+                        quality={85}
                     />
                     {/* Overlay Gelap hanya muncul saat Hover di Light Mode, atau selalu ada di Dark Mode */}
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 dark:bg-black/10 dark:group-hover:bg-transparent transition-all duration-300" />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 dark:bg-black/10 dark:group-hover:bg-transparent transition-all duration-300 z-10" />
                 </div>
 
                 {/* BAGIAN KONTEN */}
