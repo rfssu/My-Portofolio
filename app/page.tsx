@@ -31,10 +31,11 @@ export default function Home() {
           {/* THE GRID SYSTEM */}
           {/* Grid ini akan menyesuaikan dengan logika 'col-span-2' yang ada di ProjectCard */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[minmax(0,1fr)]">
-            {projects.map((project) => (
+            {projects.map((project, index) => ( // <--- Tambah parameter 'index'
               <ProjectCard
                 key={project.id}
-                {...project} // <--- MAGIC: Mengirim SEMUA data (image, size, link, dll) secara otomatis
+                index={index} // <--- Kirim 'index' ke komponen
+                {...project}
               />
             ))}
           </div>
