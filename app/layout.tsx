@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css"; // Pastikan ini tetap ada agar Tailwind jalan
-
-// 1. IMPORT LIBRARY VERCEL
-import { Analytics } from "@vercel/analytics/next";
+import "./globals.css";
+import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+// Pastikan import Providers ini ada
+import { Providers } from "./providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,16 +27,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    // FIX: Hapus komentar di baris ini agar bersih
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* Konten Website Utama */}
-        {children}
-
-        {/* 2. KOMPONEN PEMANTAU (Tidak akan terlihat di layar, tapi bekerja di background) */}
-        <Analytics />
-        <SpeedInsights />
+        <Providers>
+          {children}
+          <Analytics />
+          <SpeedInsights />
+        </Providers>
       </body>
     </html>
   );

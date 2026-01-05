@@ -1,13 +1,13 @@
 'use client';
 
 import Hero from '@/components/Hero';
-import TechStack from '@/components/TechStack'; // <--- Import Baru
+import TechStack from '@/components/TechStack';
 import ProjectCard from '@/components/ProjectCard';
-import Experience from '@/components/Experience'; // <--- Import Baru
+import Experience from '@/components/Experience';
+import ThemeToggle from '@/components/ThemeToggle'; // <--- Import Tombol
 import { projects } from '@/data/projects';
 import { motion } from 'framer-motion';
 
-// Varian Stagger untuk Project
 const containerVariants = {
   hidden: { opacity: 0 },
   show: { opacity: 1, transition: { staggerChildren: 0.2 } },
@@ -15,24 +15,27 @@ const containerVariants = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#0B1120] text-slate-200 selection:bg-indigo-500/30">
+    // PERUBAHAN BESAR DISINI: bg-slate-50 (Light) vs dark:bg-[#0B1120] (Dark)
+    // Text juga berubah: text-slate-900 (Light) vs dark:text-slate-200 (Dark)
+    <main className="min-h-screen bg-slate-50 dark:bg-[#0B1120] text-slate-900 dark:text-slate-200 transition-colors duration-300 selection:bg-indigo-500/30">
 
-      {/* 1. HERO SECTION */}
+      {/* Masukkan Tombol Toggle disini */}
+      <ThemeToggle />
+
       <div className="container mx-auto px-6 md:px-12">
         <Hero />
       </div>
 
-      {/* 2. TECH STACK MARQUEE (Full Width) */}
       <TechStack />
 
       <div className="container mx-auto px-6 md:px-12 pb-20">
 
-        {/* 3. PROJECTS SECTION */}
         <section id="projects" className="pt-20">
           <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
             <div>
-              <h2 className="text-3xl font-bold text-white mb-2">Selected Work</h2>
-              <p className="text-slate-400 max-w-lg">
+              {/* Judul: Hitam di Light, Putih di Dark */}
+              <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Selected Work</h2>
+              <p className="text-slate-600 dark:text-slate-400 max-w-lg">
                 Proyek pilihan dengan interaksi modern.
               </p>
             </div>
@@ -51,11 +54,9 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* 4. EXPERIENCE & EDUCATION */}
         <Experience />
 
-        {/* 5. FOOTER */}
-        <footer className="py-10 text-center text-slate-600 text-sm mt-10 border-t border-slate-800/50">
+        <footer className="py-10 text-center text-slate-500 text-sm mt-10 border-t border-slate-200 dark:border-slate-800/50">
           <p>© {new Date().getFullYear()} Built with Next.js & Tailwind CSS.</p>
         </footer>
 
