@@ -2,13 +2,12 @@
 
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
-import { Moon, Sun } from 'lucide-react'; // Icon library
+import { Moon, Sun } from 'lucide-react';
 
 export default function ThemeToggle() {
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
 
-    // Mencegah Hydration Mismatch
     useEffect(() => {
         setMounted(true);
     }, []);
@@ -22,12 +21,9 @@ export default function ThemeToggle() {
             aria-label="Toggle Theme"
         >
             <span className="sr-only">Toggle theme</span>
-
-            {/* Icon Matahari (Muncul saat Dark Mode) */}
             {theme === 'dark' ? (
                 <Sun className="w-6 h-6 text-amber-400 group-hover:rotate-90 transition-transform duration-500" />
             ) : (
-                /* Icon Bulan (Muncul saat Light Mode) */
                 <Moon className="w-6 h-6 text-indigo-600 group-hover:-rotate-12 transition-transform duration-500" />
             )}
         </button>
