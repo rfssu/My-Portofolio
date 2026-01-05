@@ -5,9 +5,9 @@ import { Briefcase, GraduationCap, Award, MapPin, Calendar, Trophy, Code2, Gamep
 
 const Experience = () => {
     return (
-        <section className="py-20 border-t border-slate-200 dark:border-slate-800">
-            {/* MAIN GRID: 2-Column layout for a clean, compact, and professional look */}
-            <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+        <section className="py-20 md:py-24 border-t border-slate-200 dark:border-slate-800">
+            {/* 2-Column Grid Layout */}
+            <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
                 {/* =========================================
                     LEFT COLUMN
@@ -24,11 +24,11 @@ const Experience = () => {
                             <h3 className="text-xl font-bold text-slate-900 dark:text-white">Professional Careers</h3>
                         </div>
 
-                        <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-6">
                             {/* Career 1: Quadran Co. */}
-                            <div className="bg-white dark:bg-slate-900/50 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 hover:shadow-md transition-all group">
+                            <div className="bg-white dark:bg-slate-900/50 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 hover:shadow-lg transition-all duration-300 group">
                                 <div className="flex justify-between items-start mb-2">
-                                    <h4 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-indigo-500 transition-colors">
+                                    <h4 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-indigo-500 transition-colors duration-300">
                                         Full-Stack Developer
                                     </h4>
                                     <span className="px-2 py-0.5 text-[10px] font-bold rounded bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700 uppercase">
@@ -49,9 +49,9 @@ const Experience = () => {
                             </div>
 
                             {/* Career 3: Ourmind Studio */}
-                            <div className="bg-white dark:bg-slate-900/50 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 hover:shadow-md transition-all group">
+                            <div className="bg-white dark:bg-slate-900/50 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 hover:shadow-lg transition-all duration-300 group">
                                 <div className="flex justify-between items-start mb-2">
-                                    <h4 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-indigo-500 transition-colors">
+                                    <h4 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-indigo-500 transition-colors duration-300">
                                         Game Developer & Designer
                                     </h4>
                                     <span className="px-2 py-0.5 text-[10px] font-bold rounded bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700 uppercase">
@@ -72,9 +72,9 @@ const Experience = () => {
                             </div>
 
                             {/* Career 2: SCM */}
-                            <div className="bg-white dark:bg-slate-900/50 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 hover:shadow-md transition-all group">
+                            <div className="bg-white dark:bg-slate-900/50 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 hover:shadow-lg transition-all duration-300 group">
                                 <div className="flex justify-between items-start mb-2">
-                                    <h4 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-indigo-500 transition-colors">
+                                    <h4 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-indigo-500 transition-colors duration-300">
                                         Program Development
                                     </h4>
                                     <span className="px-2 py-0.5 text-[10px] font-bold rounded bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-500/20 uppercase">

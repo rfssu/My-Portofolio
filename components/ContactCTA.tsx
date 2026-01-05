@@ -6,13 +6,13 @@ import { Mail, ArrowRight, Github, Linkedin, Instagram, Sparkles } from 'lucide-
 
 const ContactCTA = () => {
     return (
-        <section id="contact" className="py-24">
+        <section id="contact" className="py-20 md:py-24">
             <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="relative overflow-hidden bg-indigo-600 dark:bg-indigo-500 rounded-[2rem] p-8 md:p-16 text-center shadow-2xl shadow-indigo-500/20"
+                className="relative overflow-hidden bg-indigo-600 dark:bg-indigo-500 rounded-xl p-8 md:p-16 text-center shadow-2xl shadow-indigo-500/20"
             >
                 {/* Decorative Elements */}
                 <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
@@ -38,7 +38,7 @@ const ContactCTA = () => {
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
                         <a
                             href="mailto:rafi.ss.utama@gmail.com"
-                            className="flex items-center justify-center gap-2 bg-white text-indigo-600 px-8 py-4 rounded-full font-bold hover:bg-indigo-50 transition-all hover:scale-105 active:scale-95 shadow-xl"
+                            className="flex items-center justify-center gap-2 bg-white text-indigo-600 px-8 py-4 rounded-full font-bold hover:bg-indigo-50 transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl"
                         >
                             <Mail className="w-5 h-5" />
                             Start a Conversation
@@ -48,7 +48,7 @@ const ContactCTA = () => {
                         <a
                             href="https://linkedin.com/in/username"
                             target="_blank"
-                            className="flex items-center justify-center gap-2 bg-indigo-700/30 text-white border border-white/20 px-8 py-4 rounded-full font-bold hover:bg-indigo-700/50 transition-all"
+                            className="flex items-center justify-center gap-2 bg-indigo-700/30 text-white border border-white/20 px-8 py-4 rounded-full font-bold hover:bg-indigo-700/50 transition-all duration-300"
                         >
                             <Linkedin className="w-5 h-5" />
                             LinkedIn
@@ -57,7 +57,7 @@ const ContactCTA = () => {
 
                     {/* Quick Links */}
                     <div className="flex justify-center gap-8 mt-16 text-white/60">
-                        <a href="https://github.com/rfssu" target="_blank" className="hover:text-white transition-colors flex flex-col items-center gap-2">
+                        <a href="https://github.com/rfssu" target="_blank" className="hover:text-white transition-colors duration-300 flex flex-col items-center gap-2">
                             <Github className="w-6 h-6" />
                             <span className="text-[10px] uppercase font-bold tracking-tighter">Github</span>
                         </a>
