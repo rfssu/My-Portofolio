@@ -26,7 +26,7 @@ export const projects = [
         title: "Modern Personal Portfolio",
         description: "My personal professional showcase built with performance and interactivity in mind. Utilizing a Bento-grid layout to organize content effectively, featuring smooth page transitions and a highly responsive design for all devices.",
         tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-        image: null,
+        image: "/project-3.jpeg",
         links: {
             demo: "#", // Link ke diri sendiri (atau kosongkan jika belum deploy)
             repo: "https://github.com/username/portfolio" // Boleh diisi jika mau open source

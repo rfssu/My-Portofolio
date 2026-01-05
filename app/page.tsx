@@ -36,10 +36,6 @@ export default function Home() {
         {/* CTA Section */}
         <ContactCTA />
 
-        {/* Footer */}
-        <footer className="py-10 text-center text-slate-500 text-sm mt-10 border-t border-slate-200 dark:border-slate-800/50">
-          <p>© {new Date().getFullYear()} Built with Next.js & Tailwind CSS.</p>
-        </footer>
 
       </div>
     </main>

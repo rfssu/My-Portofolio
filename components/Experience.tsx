@@ -128,7 +128,7 @@ const Experience = () => {
                         <div className="bg-white dark:bg-slate-900/50 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50 transition-all group">
                             <div className="flex justify-between items-start mb-2">
                                 <h4 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-emerald-500 transition-colors">
-                                    Bach. of Information Technology
+                                    Bach. of Computer Science
                                 </h4>
                                 <span className="px-2 py-0.5 text-[10px] font-bold rounded bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-500/20">
                                     GPA: 3.XX
@@ -167,11 +167,11 @@ const Experience = () => {
                                         <h4 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-500 transition-colors">
                                             Web Developer (BNSP)
                                         </h4>
-                                        <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">National Professional Certification Agency</p>
+                                        <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">National Professional Certification Agency • 2024</p>
                                     </div>
                                 </div>
                                 <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 bg-slate-50 dark:bg-slate-800/50 px-2 py-1 rounded border border-slate-100 dark:border-slate-700">
-                                    2024
+                                    National
                                 </span>
                             </div>
 
@@ -184,11 +184,11 @@ const Experience = () => {
                                         <h4 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-500 transition-colors">
                                             IT Specialist - Software Dev
                                         </h4>
-                                        <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">Certiport</p>
+                                        <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">Certiport • 2024</p>
                                     </div>
                                 </div>
                                 <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 bg-slate-50 dark:bg-slate-800/50 px-2 py-1 rounded border border-slate-100 dark:border-slate-700">
-                                    2024
+                                    International
                                 </span>
                             </div>
                         </div>

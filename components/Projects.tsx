@@ -18,10 +18,10 @@ const Projects = () => {
                     className="mb-16 md:mb-24"
                 >
                     <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
-                        Selected <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-600">Works</span>
+                        My <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-600">Works</span>
                     </h2>
                     <p className="text-slate-600 dark:text-slate-400 text-lg max-w-2xl leading-relaxed">
-                        Beberapa proyek pilihan yang menunjukkan solusi nyata dengan kode rapi dan performa tinggi.
+                        Real-world projects demonstrating architecture, scalable solutions, and production-ready code.
                     </p>
                 </motion.div>
 
