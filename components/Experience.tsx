@@ -1,151 +1,130 @@
 'use client';
 
 import React from 'react';
-import { Briefcase, GraduationCap, Award, MapPin, Calendar, Code2, Gamepad2 } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Experience = () => {
     return (
-        <section className="py-24 md:py-32 border-t border-slate-200/20 dark:border-slate-800/20">
-            <div className="max-w-6xl mx-auto px-8 md:px-12">
+        <section id="experience" className="py-24 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0B1120]">
+            <div className="max-w-7xl mx-auto px-6 md:px-12">
 
-                {/* Section Header - Minimal */}
-                <h2 className="text-xs uppercase tracking-widest text-slate-500 dark:text-slate-600 mb-16">
-                    Experience & Background
-                </h2>
+                {/* Section Header - Centered Title */}
+                <div className="flex flex-col items-center mb-20">
+                    <h2 className="text-sm md:text-base tracking-[0.6em] font-black text-slate-900 dark:text-white uppercase font-mono text-center">
+                        PROFESSIONAL CHRONOLOGY
+                    </h2>
+                    <div className="h-[2px] w-12 bg-indigo-500 mt-4"></div>
+                </div>
 
-                {/* Professional Careers - Flat List */}
-                <div className="mb-24">
-                    <h3 className="text-2xl font-bold mb-12 tracking-tight">Professional Careers</h3>
+                {/* Main Two-Column Layout */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-24">
 
+                    {/* LEFT COLUMN: Professional Careers */}
                     <div className="space-y-12">
-                        {/* Career 1 */}
-                        <div className="grid md:grid-cols-[200px_1fr] gap-8 pb-12 border-b border-slate-200/20 dark:border-slate-800/20">
-                            <div className="text-xs uppercase tracking-widest text-slate-500 dark:text-slate-600">
-                                2024 - Present
-                            </div>
-                            <div>
-                                <div className="flex items-start justify-between mb-4">
-                                    <div>
-                                        <h4 className="text-xl font-bold text-slate-900 dark:text-white">Full-Stack Developer</h4>
-                                        <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">Quadrant Co. • Project-based</p>
-                                    </div>
-                                </div>
-                                <p className="text-sm text-slate-600 dark:text-slate-500 leading-relaxed">
+                        <div className="flex items-center gap-4 mb-12 border-b border-slate-900 dark:border-white pb-4">
+                            <span className="text-[10px] font-mono text-indigo-500 font-bold tracking-widest">01/</span>
+                            <h3 className="text-2xl font-black uppercase tracking-tighter text-left">Professional Careers</h3>
+                        </div>
+
+                        <div className="flex flex-col gap-12">
+                            {/* Career 1 */}
+                            <div className="group text-left">
+                                <p className="text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-2">2024 — Present</p>
+                                <h4 className="text-xl font-black uppercase tracking-tighter mb-1">Full-Stack Developer</h4>
+                                <p className="text-[10px] tracking-[0.2em] font-bold text-indigo-500 uppercase mb-4">Quadrant Co. • Project-based</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400 italic leading-relaxed font-medium normal-case">
                                     Collaborated within a specialized IT team to architect and deliver high-performance web solutions.
-                                    Focused on end-to-end development using modern stacks to meet complex client requirements.
                                 </p>
                             </div>
-                        </div>
 
-                        {/* Career 2 */}
-                        <div className="grid md:grid-cols-[200px_1fr] gap-8 pb-12 border-b border-slate-200/20 dark:border-slate-800/20">
-                            <div className="text-xs uppercase tracking-widest text-slate-500 dark:text-slate-600">
-                                2025 - Present
-                            </div>
-                            <div>
-                                <div className="flex items-start justify-between mb-4">
-                                    <div>
-                                        <h4 className="text-xl font-bold text-slate-900 dark:text-white">Game Developer & Designer</h4>
-                                        <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">Ourmind Studio • Personal Project</p>
-                                    </div>
-                                </div>
-                                <p className="text-sm text-slate-600 dark:text-slate-500 leading-relaxed">
+                            {/* Career 2 */}
+                            <div className="group text-left">
+                                <p className="text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-2">2025 — Present</p>
+                                <h4 className="text-xl font-black uppercase tracking-tighter mb-1">Game Developer & Designer</h4>
+                                <p className="text-[10px] tracking-[0.2em] font-bold text-indigo-500 uppercase mb-4">Ourmind Studio • Personal Project</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400 italic leading-relaxed font-medium normal-case">
                                     Independent game conceptualization and technical implementation of gameplay mechanics.
-                                    Focused on interactive storytelling and user experience design for digital entertainment.
                                 </p>
                             </div>
-                        </div>
 
-                        {/* Career 3 */}
-                        <div className="grid md:grid-cols-[200px_1fr] gap-8 pb-12 border-b border-slate-200/20 dark:border-slate-800/20">
-                            <div className="text-xs uppercase tracking-widest text-slate-500 dark:text-slate-600">
-                                Oct 2024 - Feb 2025
-                            </div>
-                            <div>
-                                <div className="flex items-start justify-between mb-4">
-                                    <div>
-                                        <h4 className="text-xl font-bold text-slate-900 dark:text-white">Program Development</h4>
-                                        <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">PT Surya Citra Media • Jakarta</p>
-                                    </div>
-                                </div>
-                                <p className="text-sm text-slate-600 dark:text-slate-500 leading-relaxed">
+                            {/* Career 3 */}
+                            <div className="group text-left">
+                                <p className="text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-2">Oct 2024 — Feb 2025</p>
+                                <h4 className="text-xl font-black uppercase tracking-tighter mb-1 text-left">Program Development</h4>
+                                <p className="text-[10px] tracking-[0.2em] font-bold text-indigo-500 uppercase mb-4">PT Surya Citra Media • Jakarta</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400 italic leading-relaxed font-medium normal-case">
                                     Assisted in strategic program planning and creative development for major media content.
-                                    Analyzed television trends and viewer data to provide actionable content insights.
                                 </p>
                             </div>
-                        </div>
 
-                        {/* Career 4 */}
-                        <div className="grid md:grid-cols-[200px_1fr] gap-8 pb-12 border-b border-slate-200/20 dark:border-slate-800/20">
-                            <div className="text-xs uppercase tracking-widest text-slate-500 dark:text-slate-600">
-                                Feb 2023 - Jun 2023
-                            </div>
-                            <div>
-                                <div className="flex items-start justify-between mb-4">
-                                    <div>
-                                        <h4 className="text-xl font-bold text-slate-900 dark:text-white">Research & Development</h4>
-                                        <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">NET MEDIA TAMA TELEVISI • Jakarta</p>
-                                    </div>
-                                </div>
-                                <p className="text-sm text-slate-600 dark:text-slate-500 leading-relaxed">
+                            {/* Career 4 */}
+                            <div className="group text-left">
+                                <p className="text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-2">Feb 2023 — Jun 2023</p>
+                                <h4 className="text-xl font-black uppercase tracking-tighter mb-1">Research & Development</h4>
+                                <p className="text-[10px] tracking-[0.2em] font-bold text-indigo-500 uppercase mb-4">NET MEDIA TAMA TELEVISI • Jakarta</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400 italic leading-relaxed font-medium normal-case">
                                     Conducted comprehensive research on industry trends to identify audience preferences.
-                                    Presented technical findings and strategic recommendations to senior management teams.
                                 </p>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                {/* Education & Certifications - Side by Side */}
-                <div className="grid md:grid-cols-2 gap-16">
+                    {/* RIGHT COLUMN: Education, Certs, & Honors */}
+                    <div className="space-y-24">
 
-                    {/* Education */}
-                    <div>
-                        <h3 className="text-2xl font-bold mb-8 tracking-tight">Education</h3>
-                        <div className="space-y-2">
-                            <h4 className="text-base font-bold">Bach. of Computer Science</h4>
-                            <p className="text-sm text-slate-600 dark:text-slate-400">Universitas Muhammadiyah Yogyakarta</p>
-                            <p className="text-xs uppercase tracking-widest text-slate-500 dark:border-slate-600 mt-2">2022 - Present</p>
-                        </div>
-                    </div>
-
-                    {/* Certifications */}
-                    <div>
-                        <h3 className="text-2xl font-bold mb-8 tracking-tight">Certifications</h3>
-                        <div className="space-y-6">
-                            <div>
-                                <h4 className="text-base font-bold">Web Developer (BNSP)</h4>
-                                <p className="text-xs uppercase tracking-widest text-slate-500 dark:text-slate-600 mt-1">National Professional Certification • 2024</p>
+                        {/* Education */}
+                        <div className="text-left">
+                            <div className="flex items-center gap-4 mb-10 border-b border-slate-900 dark:border-white pb-4">
+                                <span className="text-[10px] font-mono text-indigo-500 font-bold tracking-widest">02/</span>
+                                <h3 className="text-2xl font-black uppercase tracking-tighter">Education</h3>
                             </div>
-                            <div>
-                                <h4 className="text-base font-bold">IT Specialist - Software Dev</h4>
-                                <p className="text-xs uppercase tracking-widest text-slate-500 dark:text-slate-600 mt-1">Certiport • 2024</p>
+                            <div className="pl-6 border-l border-slate-100 dark:border-slate-800">
+                                <h4 className="text-lg font-black uppercase tracking-tighter">Bach. of Computer Science</h4>
+                                <p className="text-sm text-slate-500 italic mt-1 font-medium">Universitas Muhammadiyah Yogyakarta</p>
+                                <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-slate-400 mt-3">2022 — Present</p>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                {/* Achievements */}
-                <div className="mt-16 pt-16 border-t border-slate-200/20 dark:border-slate-800/20">
-                    <h3 className="text-2xl font-bold mb-8 tracking-tight">Honors & Awards</h3>
-                    <div className="space-y-8">
-                        <div>
-                            <h4 className="text-base font-bold">Top 3 The Gade Sociopreneurship</h4>
-                            <p className="text-xs uppercase tracking-widest text-slate-500 dark:text-slate-600 mt-1">PT. Pegadaian • 2023</p>
-                            <p className="text-sm text-slate-600 dark:text-slate-500 mt-3 leading-relaxed">
-                                Developed an innovative business solution with the Inclue Indonesia team.
-                            </p>
+                        {/* Certifications */}
+                        <div className="text-left">
+                            <div className="flex items-center gap-4 mb-10 border-b border-slate-900 dark:border-white pb-4">
+                                <span className="text-[10px] font-mono text-indigo-500 font-bold tracking-widest">03/</span>
+                                <h3 className="text-2xl font-black uppercase tracking-tighter">Certifications</h3>
+                            </div>
+                            <div className="space-y-8 pl-6 border-l border-slate-100 dark:border-slate-800">
+                                <div>
+                                    <h4 className="text-base font-black uppercase tracking-tighter">Web Developer (BNSP)</h4>
+                                    <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-slate-400 mt-1">National Prof. Certification • 2024</p>
+                                </div>
+                                <div>
+                                    <h4 className="text-base font-black uppercase tracking-tighter">IT Specialist - Software Dev</h4>
+                                    <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-slate-400 mt-1">Certiport • 2024</p>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <h4 className="text-base font-bold">Business Acumen Program</h4>
-                            <p className="text-xs uppercase tracking-widest text-slate-500 dark:text-slate-600 mt-1">Tanoto Foundation • 2022</p>
-                            <p className="text-sm text-slate-600 dark:text-slate-500 mt-3 leading-relaxed">
-                                Selected as a finalist in a prestigious future business leaders strategy program.
-                            </p>
+
+                        {/* Honors & Awards */}
+                        <div className="text-left">
+                            <div className="flex items-center gap-4 mb-10 border-b border-slate-900 dark:border-white pb-4">
+                                <span className="text-[10px] font-mono text-indigo-500 font-bold tracking-widest">04/</span>
+                                <h3 className="text-2xl font-black uppercase tracking-tighter">Honors & Awards</h3>
+                            </div>
+                            <div className="space-y-8 pl-6 border-l border-slate-100 dark:border-slate-800">
+                                <div>
+                                    <h4 className="text-lg font-black uppercase tracking-tighter">Top 3 The Gade Sociopreneurship</h4>
+                                    <p className="text-[10px] font-mono tracking-widest text-slate-400 uppercase font-bold">PT. Pegadaian • 2023</p>
+                                    <p className="text-sm text-slate-600 dark:text-slate-400 italic mt-2 font-medium">Developed an innovative business solution with the Inclue Indonesia team.</p>
+                                </div>
+                                <div>
+                                    <h4 className="text-lg font-black uppercase tracking-tighter">Business Acumen Program</h4>
+                                    <p className="text-[10px] font-mono tracking-widest text-slate-400 uppercase font-bold">Tanoto Foundation • 2022</p>
+                                    <p className="text-sm text-slate-600 dark:text-slate-400 italic mt-2 font-medium">Selected as a finalist in a prestigious future business leaders program.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </section>
     );

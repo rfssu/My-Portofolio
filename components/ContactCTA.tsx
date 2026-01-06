@@ -2,69 +2,66 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Github, Instagram } from 'lucide-react';
 
 const ContactCTA = () => {
     return (
-        <section id="contact" className="py-24 md:py-32">
+        <section id="contact" className="py-24 md:py-32 bg-white dark:bg-[#0B1120] border-t border-slate-200 dark:border-slate-800">
             <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="max-w-4xl mx-auto px-8 md:px-12"
+                transition={{ duration: 0.8 }}
+                className="max-w-7xl mx-auto px-6 md:px-12"
             >
-                {/* Heading */}
-                <h2 className="text-xs uppercase tracking-widest text-slate-500 dark:text-slate-600 mb-8">
-                    Let's Work Together
-                </h2>
+                {/* Minimalist Heading - Consistent with other sections */}
+                <div className="flex items-center gap-4 mb-12">
+                    <span className="text-[10px] font-mono text-indigo-500 font-bold tracking-widest">05/</span>
+                    <h2 className="text-sm md:text-base tracking-[0.4em] font-black text-slate-900 dark:text-white uppercase font-mono">
+                        Inquiries & Collaboration
+                    </h2>
+                </div>
 
-                {/* Email - Large Display */}
-                <a
-                    href="mailto:rafi.ss.utama@gmail.com"
-                    className="block text-4xl md:text-6xl font-bold tracking-tighter mb-12 hover:text-slate-600 dark:hover:text-slate-400 transition-colors duration-300"
-                >
-                    rafi.ss.utama@gmail.com
-                </a>
-
-                {/* Social Links - Minimal */}
-                <div className="flex gap-8 text-xs uppercase tracking-widest border-t border-slate-200/20 dark:border-slate-800/20 pt-8">
+                {/* Large Display Email - A24 Title Style */}
+                <div className="mb-24">
+                    <p className="text-[10px] tracking-[0.5em] text-slate-400 uppercase font-mono mb-4">Drop a message</p>
                     <a
-                        href="https://github.com/rfssu"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-slate-600 dark:hover:text-slate-400 transition-colors duration-300 pb-1 border-b border-transparent hover:border-current"
+                        href="mailto:rafi.ss.utama@gmail.com"
+                        className="block text-4xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase leading-none hover:text-indigo-500 transition-all duration-500 break-words"
                     >
-                        GitHub →
-                    </a>
-                    <a
-                        href="https://linkedin.com/in/username"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-slate-600 dark:hover:text-slate-400 transition-colors duration-300 pb-1 border-b border-transparent hover:border-current"
-                    >
-                        LinkedIn →
-                    </a>
-                    <a
-                        href="https://instagram.com/username"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-slate-600 dark:hover:text-slate-400 transition-colors duration-300 pb-1 border-b border-transparent hover:border-current"
-                    >
-                        Instagram →
+                        rafi.ss.utama<br />@gmail.com
                     </a>
                 </div>
-            </motion.div>
 
-            {/* Footer - Minimal */}
-            <footer className="mt-24 pt-12 border-t border-slate-200/20 dark:border-slate-800/20 text-center">
-                <p className="text-xs uppercase tracking-widest text-slate-500 dark:text-slate-600">
-                    © {new Date().getFullYear()} Rafi Saifullah Satria Utama
-                </p>
-                <p className="text-xs text-slate-600 dark:text-slate-700 mt-2">
-                    Built with Next.js 15 & Framer Motion
-                </p>
-            </footer>
+                {/* Social Links & Legal-style Footer Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 pt-12 border-t border-slate-900 dark:border-white">
+                    {/* Links Column */}
+                    <div className="md:col-span-8 flex flex-wrap gap-x-12 gap-y-4">
+                        <a href="https://github.com/rfssu" target="_blank" className="group flex flex-col">
+                            <span className="text-[9px] text-slate-400 font-mono tracking-widest mb-1">01 / GITHUB</span>
+                            <span className="text-xs font-bold uppercase tracking-widest group-hover:text-indigo-500 transition-colors">Follow ↗</span>
+                        </a>
+                        <a href="https://linkedin.com/in/username" target="_blank" className="group flex flex-col">
+                            <span className="text-[9px] text-slate-400 font-mono tracking-widest mb-1">02 / LINKEDIN</span>
+                            <span className="text-xs font-bold uppercase tracking-widest group-hover:text-indigo-500 transition-colors">Connect ↗</span>
+                        </a>
+                        <a href="https://instagram.com/username" target="_blank" className="group flex flex-col">
+                            <span className="text-[9px] text-slate-400 font-mono tracking-widest mb-1">03 / INSTAGRAM</span>
+                            <span className="text-xs font-bold uppercase tracking-widest group-hover:text-indigo-500 transition-colors">Photos ↗</span>
+                        </a>
+                    </div>
+
+                    {/* Production Credits Column */}
+                    <div className="md:col-span-4 md:text-right space-y-2">
+                        <p className="text-[10px] font-black tracking-[0.2em] uppercase text-slate-900 dark:text-white">
+                            © {new Date().getFullYear()} RF-PORTO PRODUCTION
+                        </p>
+                        <p className="text-[9px] font-mono tracking-widest text-slate-500 leading-relaxed uppercase">
+                            Designed for performance / <br />
+                            Built with Next.js 15 & Framer
+                        </p>
+                    </div>
+                </div>
+            </motion.div>
         </section>
     );
 };

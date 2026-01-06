@@ -33,7 +33,7 @@ const TechStack = () => {
             {/* Editorial Title - Rapat & Minimalis */}
             <div className="flex flex-col items-center mb-6"> {/* Margin bottom diperkecil dari 16 ke 8 */}
                 <h2 className="text-sm md:text-base tracking-[0.6em] font-black text-slate-900 dark:text-white uppercase font-mono">
-                    TECHNICAL APPARATUS
+                    TECHNICAL TOOLS
                 </h2>
                 <div className="h-[2px] w-8 bg-indigo-500 mt-2"></div> {/* Jarak garis juga dirapatkan */}
             </div>
