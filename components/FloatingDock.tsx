@@ -48,10 +48,12 @@ const FloatingDock: React.FC = () => {
     return (
         <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
             <motion.div
-                onMouseMove={(e) => mouseX.set(e.pageX)}
+                onMouseMove={(e) => {
+                    // Throttle to 60fps max for better performance
+                    requestAnimationFrame(() => mouseX.set(e.pageX));
+                }}
                 onMouseLeave={() => mouseX.set(Infinity)}
-                className="flex items-center gap-px bg-black dark:bg-white border border-white/10 dark:border-black/10 p-px"
-            >
+                className="flex items-center gap-px bg-black dark:bg-white border border-white/10 dark:border-black/10 p-px will-change-transform">
                 {/* Navigation Links */}
                 {links.map((link) => (
                     <DockIcon key={link.id} mouseX={mouseX} label={link.label} onClick={() => scrollToSection(link.id)}>
@@ -104,9 +106,9 @@ const DockIcon: React.FC<DockIconProps> = ({ mouseX, children, label, onClick })
     return (
         <motion.div
             ref={ref}
-            style={{ width, height: width }}
+            style={{ width, height: width, minWidth: 44, minHeight: 44 }}
             onClick={onClick}
-            className="group relative flex items-center justify-center cursor-pointer bg-white/5 dark:bg-black/5 hover:bg-white/10 dark:hover:bg-black/10 text-white dark:text-black transition-colors duration-300"
+            className="group relative flex items-center justify-center cursor-pointer bg-white/5 dark:bg-black/5 hover:bg-white/10 dark:hover:bg-black/10 text-white dark:text-black transition-colors duration-300 will-change-transform"
         >
             <div className="p-2 w-full h-full flex items-center justify-center">
                 {children}

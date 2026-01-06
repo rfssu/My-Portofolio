@@ -6,19 +6,13 @@ import { motion } from 'framer-motion';
 const ContactCTA: React.FC = () => {
     return (
         <section id="contact" className="py-24 md:py-32 bg-white dark:bg-[#0B1120] border-t border-slate-200 dark:border-slate-800">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="max-w-7xl mx-auto px-6 md:px-12"
-            >
+            <div className="max-w-7xl mx-auto px-6 md:px-12">
                 {/* Large Display Email - No Section Title */}
                 <div className="mb-24">
                     <p className="text-[10px] tracking-[0.2em] text-slate-400 uppercase font-mono mb-4">Drop a message</p>
                     <a
                         href="mailto:rafi.ss.utama@gmail.com"
-                        className="block text-4xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase leading-none hover:text-indigo-500 transition-all duration-300 break-words"
+                        className="block text-4xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase leading-none hover:text-indigo-500 transition-all duration-300 break-all md:break-words"
                     >
                         rafi.ss.utama<br />@gmail.com
                     </a>
@@ -53,7 +47,7 @@ const ContactCTA: React.FC = () => {
                         </p>
                     </div>
                 </div>
-            </motion.div>
+            </div>
         </section>
     );
 };

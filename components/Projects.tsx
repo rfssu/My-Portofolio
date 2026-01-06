@@ -72,7 +72,7 @@ const Projects: React.FC = () => {
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                 exit={{ opacity: 0, y: 20, scale: 0.98 }}
                                 transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                                className="pointer-events-auto w-full max-w-3xl max-h-[85vh] bg-white dark:bg-[#0B1120] border border-slate-200 dark:border-slate-800 overflow-y-auto shadow-2xl scrollbar-hide"
+                                className="pointer-events-auto w-full max-w-3xl max-h-[85vh] bg-white dark:bg-[#0B1120] border border-slate-200 dark:border-slate-800 overflow-y-auto overscroll-contain shadow-2xl scrollbar-hide will-change-transform"
                             >
                                 {/* Modal Banner - Cinematic Grayscale */}
                                 <div className="relative aspect-video bg-slate-900">
@@ -80,6 +80,7 @@ const Projects: React.FC = () => {
                                         src={selectedProject.image}
                                         alt="Cover"
                                         fill
+                                        loading="lazy"
                                         className="object-cover grayscale hover:grayscale-0 transition-all duration-1000 ease-in-out"
                                     />
                                     <button
