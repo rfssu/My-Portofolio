@@ -25,7 +25,7 @@ const ProjectCard: React.FC<ProjectProps> = ({ project, index, onOpen }) => {
                     src={project.image || '/placeholder.png'}
                     alt={project.title}
                     fill
-                    className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1.2s] ease-in-out"
+                    className="object-cover group-hover:scale-105 transition-all duration-[1.2s] ease-in-out"
                 />
             </div>
             <div className="space-y-1">

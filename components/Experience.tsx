@@ -38,7 +38,7 @@ const Experience: React.FC = () => {
 
                             {/* Career 2 */}
                             <div className="group text-left">
-                                <p className="text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-2">2025 — Present</p>
+                                <p className="text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-2">2024 — Present</p>
                                 <h4 className="text-xl font-black uppercase tracking-tighter mb-1">Game Developer & Designer</h4>
                                 <p className="text-[10px] tracking-[0.2em] font-bold text-indigo-500 uppercase mb-4">Ourmind Studio • Personal Project</p>
                                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
@@ -77,7 +77,7 @@ const Experience: React.FC = () => {
                                 <h3 className="text-xl font-bold uppercase tracking-tight">Education</h3>
                             </div>
                             <div className="pl-6 border-l border-slate-100 dark:border-slate-800">
-                                <h4 className="text-lg font-black uppercase tracking-tighter">Bach. of Computer Science</h4>
+                                <h4 className="text-lg font-black uppercase tracking-tighter">Bachelor of Information Technology</h4>
                                 <p className="text-sm text-slate-500 mt-1 font-medium">Universitas Muhammadiyah Yogyakarta</p>
                             </div>
                         </div>

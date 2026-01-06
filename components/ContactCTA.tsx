@@ -8,11 +8,11 @@ const ContactCTA: React.FC = () => {
         <section id="contact" className="py-24 md:py-32 bg-white dark:bg-[#0B1120] border-t border-slate-200 dark:border-slate-800">
             <div className="max-w-7xl mx-auto px-6 md:px-12">
                 {/* Large Display Email - No Section Title */}
-                <div className="mb-24">
-                    <p className="text-[10px] tracking-[0.2em] text-slate-400 uppercase font-mono mb-4">Drop a message</p>
+                <div className="mb-16 md:mb-24">
+                    <p className="text-[10px] tracking-[0.2em] text-slate-400 uppercase font-mono mb-3 md:mb-4">Drop a message</p>
                     <a
                         href="mailto:rafi.ss.utama@gmail.com"
-                        className="block text-4xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase leading-none hover:text-indigo-500 transition-all duration-300 break-all md:break-words"
+                        className="block text-3xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase leading-none hover:text-indigo-500 transition-all duration-300 break-all md:break-words"
                     >
                         rafi.ss.utama<br />@gmail.com
                     </a>

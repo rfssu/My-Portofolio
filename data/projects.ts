@@ -5,7 +5,7 @@ export const projects: Project[] = [
         id: 1,
         title: "Khas Jogja Store",
         description: "A digital marketplace empowering local MSMEs in Yogyakarta to sell authentic souvenirs through a centralized platform.",
-        tech: ["Laravel", "Tailwind CSS", "DigitalOcean", "S3 Storage"],
+        tech: ["Laravel", "TailwindCSS", "DigitalOcean", "AmazonS3"],
         image: "/project1.jpeg",
         features: [
             "S3-Compatible Cloud Storage for secure and high-speed asset delivery.",
@@ -39,7 +39,7 @@ export const projects: Project[] = [
         id: 3,
         title: "Modern Personal Portfolio",
         description: "A high-performance cinematic portfolio built with Next.js 15, focusing on editorial design and smooth interaction.",
-        tech: ["Nextjs", "TypeScript", "Tailwind CSS", "Framer Motion"],
+        tech: ["Next.js", "TypeScript", "TailwindCSS", "Framer"],
         image: "/project-3.jpeg",
         features: [
             "Next.js 15 Server-Side Rendering (SSR) for optimal performance.",

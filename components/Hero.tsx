@@ -32,19 +32,19 @@ const Hero: React.FC = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, delay: 0.4 }}
-                    className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-12 md:gap-20 items-start"
+                    className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 md:gap-20 items-start"
                 >
                     {/* Left Column: Identity & Skills */}
-                    <div className="space-y-6">
+                    <div className="space-y-4 md:space-y-6">
                         {/* Name */}
                         <div>
-                            <h1 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white leading-tight tracking-tight uppercase">
+                            <h1 className="text-xl md:text-3xl font-black text-slate-900 dark:text-white leading-tight tracking-tight uppercase">
                                 RAFI SAIFULLAH SATRIA UTAMA
                             </h1>
                         </div>
 
                         {/* Status & Location */}
-                        <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+                        <div className="flex flex-wrap items-center gap-x-4 md:gap-x-6 gap-y-2 md:gap-y-3">
                             <div className="flex items-center gap-2">
                                 <span className="relative flex h-2 w-2">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -55,24 +55,24 @@ const Hero: React.FC = () => {
 
                             <div className="flex items-center gap-2">
                                 <span className="text-[10px] tracking-[0.2em] text-slate-400 uppercase">Location:</span>
-                                <span className="text-sm font-medium text-slate-900 dark:text-white">Indonesia</span>
+                                <span className="text-xs md:text-sm font-medium text-slate-900 dark:text-white">Indonesia</span>
                             </div>
                         </div>
 
                         {/* Skills */}
                         <div>
-                            <p className="text-[10px] tracking-[0.2em] text-slate-400 uppercase mb-3">Specialization</p>
-                            <div className="flex items-center gap-3">
-                                <span className="text-xs font-medium px-3 py-1 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white">
+                            <p className="text-[10px] tracking-[0.2em] text-slate-400 uppercase mb-2 md:mb-3">Specialization</p>
+                            <div className="flex items-center gap-2 md:gap-3 flex-wrap">
+                                <span className="text-[10px] md:text-xs font-medium px-2 md:px-3 py-1 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white">
                                     UI/UX Design
                                 </span>
-                                <span className="text-xs font-medium px-3 py-1 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white">
+                                <span className="text-[10px] md:text-xs font-medium px-2 md:px-3 py-1 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white">
                                     Mobile Dev
                                 </span>
-                                <span className="text-xs font-medium px-3 py-1 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white">
+                                <span className="text-[10px] md:text-xs font-medium px-2 md:px-3 py-1 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white">
                                     Frontend
                                 </span>
-                                <span className="text-xs font-medium px-3 py-1 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white">
+                                <span className="text-[10px] md:text-xs font-medium px-2 md:px-3 py-1 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white">
                                     Backend
                                 </span>
                             </div>
@@ -82,10 +82,10 @@ const Hero: React.FC = () => {
                     {/* Right Column: Current Focus */}
                     <div className="md:pt-2 md:min-w-[280px]">
                         <div>
-                            <p className="text-[10px] tracking-[0.2em] text-slate-400 uppercase mb-3">
+                            <p className="text-[10px] tracking-[0.2em] text-slate-400 uppercase mb-2 md:mb-3">
                                 Currently Building
                             </p>
-                            <p className="text-sm italic text-slate-600 dark:text-slate-400 leading-relaxed">
+                            <p className="text-xs md:text-sm italic text-slate-600 dark:text-slate-400 leading-relaxed">
                                 Architecting unified cross-platform ecosystems for seamless mobile and web experiences.
                             </p>
                         </div>

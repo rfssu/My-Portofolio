@@ -10,9 +10,20 @@ import { Project } from '@/types';
 const Projects: React.FC = () => {
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-    const getLogoUrl = (name: string) => {
-        const slug = name.toLowerCase().replace(/\s+/g, '').replace(/\.js/g, 'dotjs');
-        return `https://cdn.simpleicons.org/${slug}`;
+    const getLogoUrl = (name: string): string => {
+        // Map tech names to correct Simple Icons slugs
+        const slugMap: { [key: string]: string } = {
+            'Next.js': 'nextdotjs',
+            'TailwindCSS': 'tailwindcss',
+            'Tailwind CSS': 'tailwindcss',
+            'AmazonS3': 'amazons3',
+            'S3 Storage': 'amazons3',
+            'DigitalOcean': 'digitalocean',
+            'Framer Motion': 'framer',
+            'Framer': 'framer'
+        };
+
+        return `https://cdn.simpleicons.org/${slugMap[name] || name.toLowerCase()}`;
     };
 
     return (
@@ -74,14 +85,14 @@ const Projects: React.FC = () => {
                                 transition={{ type: 'spring', damping: 25, stiffness: 200 }}
                                 className="pointer-events-auto w-full max-w-3xl max-h-[85vh] bg-white dark:bg-[#0B1120] border border-slate-200 dark:border-slate-800 overflow-y-auto overscroll-contain shadow-2xl scrollbar-hide will-change-transform"
                             >
-                                {/* Modal Banner - Cinematic Grayscale */}
+                                {/* Modal Banner */}
                                 <div className="relative aspect-video bg-slate-900">
                                     <Image
                                         src={selectedProject.image}
                                         alt="Cover"
                                         fill
                                         loading="lazy"
-                                        className="object-cover grayscale hover:grayscale-0 transition-all duration-1000 ease-in-out"
+                                        className="object-cover transition-all duration-700 ease-in-out"
                                     />
                                     <button
                                         onClick={() => setSelectedProject(null)}
@@ -92,17 +103,17 @@ const Projects: React.FC = () => {
                                 </div>
 
                                 {/* Modal Content */}
-                                <div className="p-6 md:p-10 space-y-10 text-left">
-                                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-200 dark:border-slate-800 pb-8">
+                                <div className="p-4 md:p-10 space-y-6 md:space-y-10 text-left">
+                                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6 border-b border-slate-200 dark:border-slate-800 pb-6 md:pb-8">
                                         <div className="space-y-1">
                                             <p className="text-[10px] tracking-[0.3em] text-slate-400 font-mono font-bold uppercase">
                                                 Case Studio / {String(selectedProject.id).padStart(2, '0')}
                                             </p>
-                                            <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-tight">
+                                            <h3 className="text-2xl md:text-5xl font-black uppercase tracking-tighter leading-tight">
                                                 {selectedProject.title}
                                             </h3>
                                         </div>
-                                        <div className="flex gap-6 text-[11px] font-black uppercase tracking-widest shrink-0">
+                                        <div className="flex gap-4 md:gap-6 text-[10px] md:text-[11px] font-black uppercase tracking-widest shrink-0">
                                             {selectedProject.links.demo && (
                                                 <a href={selectedProject.links.demo} target="_blank" className="hover:text-indigo-500 underline underline-offset-4 decoration-indigo-500/30 hover:decoration-indigo-500 transition-all">
                                                     Live Demo ↗
@@ -117,42 +128,42 @@ const Projects: React.FC = () => {
                                     </div>
 
                                     {/* Details Grid */}
-                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-                                        <div className="md:col-span-2 space-y-6">
-                                            <div className="space-y-3">
+                                    <div className="grid grid-cols-1 gap-6 md:gap-10">
+                                        <div className="space-y-4 md:space-y-6">
+                                            <div className="space-y-2 md:space-y-3">
                                                 <p className="text-[10px] tracking-[0.3em] text-slate-400 font-mono font-bold uppercase italic">Synopsis</p>
-                                                <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 italic leading-relaxed font-medium">
+                                                <p className="text-xs md:text-base text-slate-600 dark:text-slate-400 italic leading-relaxed font-medium">
                                                     {selectedProject.description}
                                                 </p>
                                             </div>
 
-                                            <div className="space-y-4">
+                                            <div className="space-y-3 md:space-y-4">
                                                 <p className="text-[10px] tracking-[0.3em] text-slate-400 font-mono font-bold uppercase italic">Key Features</p>
-                                                <ul className="space-y-3">
+                                                <ul className="space-y-2 md:space-y-3">
                                                     {selectedProject.features?.map((f: string) => (
-                                                        <li key={f} className="flex gap-3 text-xs md:text-sm font-bold uppercase tracking-tight text-slate-800 dark:text-slate-200">
+                                                        <li key={f} className="flex gap-2 md:gap-3 text-[11px] md:text-sm font-bold uppercase tracking-tight text-slate-800 dark:text-slate-200">
                                                             <span className="text-indigo-500">→</span>
                                                             <span>{f}</span>
                                                         </li>
                                                     ))}
                                                 </ul>
                                             </div>
-                                        </div>
 
-                                        {/* GANTI APPARATUS MENJADI TECHNICAL TOOLS */}
-                                        <div className="space-y-4">
-                                            <p className="text-[10px] tracking-[0.3em] text-slate-400 font-mono font-bold uppercase italic">Technical Tools</p>
-                                            <div className="flex flex-wrap gap-4">
-                                                {selectedProject.tech.map((t: string) => (
-                                                    <div key={t} className="flex items-center gap-2 group/icon">
-                                                        <img
-                                                            src={getLogoUrl(t)}
-                                                            alt={t}
-                                                            className="w-3.5 h-3.5 grayscale opacity-50 group-hover/icon:opacity-100 transition-all"
-                                                        />
-                                                        <span className="text-[9px] font-black tracking-tighter uppercase">{t}</span>
-                                                    </div>
-                                                ))}
+                                            {/* TECHNICAL TOOLS - Moved here for mobile */}
+                                            <div className="space-y-3 md:space-y-4 pt-4 border-t border-slate-100 dark:border-slate-800 md:border-0 md:pt-0">
+                                                <p className="text-[10px] tracking-[0.3em] text-slate-400 font-mono font-bold uppercase italic">Technical Tools</p>
+                                                <div className="flex flex-wrap gap-3 md:gap-4">
+                                                    {selectedProject.tech.map((t: string) => (
+                                                        <div key={t} className="flex items-center gap-2 group/icon">
+                                                            <img
+                                                                src={getLogoUrl(t)}
+                                                                alt={t}
+                                                                className="w-3.5 h-3.5 opacity-70 group-hover/icon:opacity-100 transition-all"
+                                                            />
+                                                            <span className="text-[9px] font-black tracking-tighter uppercase">{t}</span>
+                                                        </div>
+                                                    ))}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
