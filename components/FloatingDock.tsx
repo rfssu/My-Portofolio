@@ -12,8 +12,9 @@ import {
     Moon,
     Github,
 } from 'lucide-react';
+import { DockIconProps, NavigationLink, SocialLink } from '@/types';
 
-export default function FloatingDock() {
+const FloatingDock: React.FC = () => {
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
 
@@ -23,13 +24,13 @@ export default function FloatingDock() {
 
     const mouseX = useMotionValue(Infinity);
 
-    const links = [
+    const links: NavigationLink[] = [
         { id: 'hero', icon: <Home className="w-full h-full" />, label: "Home" },
         { id: 'projects', icon: <Layers className="w-full h-full" />, label: "Projects" },
         { id: 'experience', icon: <Briefcase className="w-full h-full" />, label: "Experience" },
     ];
 
-    const socialLinks = [
+    const socialLinks: SocialLink[] = [
         { url: "https://github.com/rfssu", icon: <Github className="w-full h-full" />, label: "GitHub" },
         { url: "mailto:rafi.ss.utama@gmail.com", icon: <Mail className="w-full h-full" />, label: "Contact" },
     ];
@@ -85,9 +86,11 @@ export default function FloatingDock() {
             </motion.div>
         </div>
     );
-}
+};
 
-function DockIcon({ mouseX, children, label, onClick }: any) {
+export default FloatingDock;
+
+const DockIcon: React.FC<DockIconProps> = ({ mouseX, children, label, onClick }) => {
     const ref = useRef<HTMLDivElement>(null);
 
     const distance = useTransform(mouseX, (val: number) => {
@@ -113,4 +116,4 @@ function DockIcon({ mouseX, children, label, onClick }: any) {
             </span>
         </motion.div>
     );
-}
+};

@@ -2,8 +2,9 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { TechStackItem } from '@/types';
 
-const coreStack = [
+const coreStack: TechStackItem[] = [
     { name: "LARAVEL", slug: "laravel" },
     { name: "NEXT.JS", slug: "nextdotjs" },
     { name: "REACT", slug: "react" },
@@ -13,7 +14,7 @@ const coreStack = [
     { name: "POSTGRESQL", slug: "postgresql" }
 ];
 
-const supportStack = [
+const supportStack: TechStackItem[] = [
     { name: "FIGMA", slug: "figma" },
     { name: "SPRING BOOT", slug: "springboot" },
     { name: ".NET", slug: "dotnet" },
@@ -24,8 +25,8 @@ const supportStack = [
     { name: "LINUX", slug: "linux" }
 ];
 
-const TechStack = () => {
-    const getLogoUrl = (slug: string) => `https://cdn.simpleicons.org/${slug}`;
+const TechStack: React.FC = () => {
+    const getLogoUrl = (slug: string): string => `https://cdn.simpleicons.org/${slug}`;
 
     return (
         <section className="py-12 border-y border-slate-200 dark:border-slate-800 overflow-hidden bg-white dark:bg-[#0B1120]">

@@ -1,35 +1,55 @@
-export const projects = [
+import { Project } from '@/types';
+
+export const projects: Project[] = [
     {
         id: 1,
         title: "Khas Jogja Store",
-        description: "A digital marketplace empowering local MSMEs (UMKM) in Yogyakarta to sell authentic souvenirs. Features include S3-compatible cloud storage for assets, real-time product search, and a seamless checkout experience hosted on a scalable PaaS infrastructure.",
-        tech: ["Laravel", "Tailwind CSS", "DigitalOcean App Platform", "S3 Storage"],
+        description: "A digital marketplace empowering local MSMEs in Yogyakarta to sell authentic souvenirs through a centralized platform.",
+        tech: ["Laravel", "Tailwind CSS", "DigitalOcean", "S3 Storage"],
         image: "/project1.jpeg",
+        features: [
+            "S3-Compatible Cloud Storage for secure and high-speed asset delivery.",
+            "Real-time Product Search using optimized database indexing.",
+            "Scalable PaaS Infrastructure with automated deployment pipelines.",
+            "Integrated Checkout System designed for local MSME scalability."
+        ],
         links: {
             demo: "https://khas-jogja-store-r5fzs.ondigitalocean.app/",
-            repo: null // Repo private/client
+            repo: null
         }
     },
     {
         id: 2,
         title: "Simply Haircut Platform",
-        description: "An integrated booking and academy platform for a premium barbershop. The system allows customers to book specific hair artists and services, while also serving as an educational hub for the Simply Haircut Academy.",
+        description: "Integrated booking and education ecosystem for premium barbershops, featuring real-time artist scheduling.",
         tech: ["Laravel", "MySQL", "JavaScript", "Bootstrap"],
         image: "/project2.jpeg",
+        features: [
+            "Atomic Booking Engine to prevent double-booking across multiple branches.",
+            "Hair Artist Academy portal for integrated educational management.",
+            "Real-time Artist Scheduling with interactive calendar views.",
+            "Automated Customer Notifications for booking confirmation."
+        ],
         links: {
             demo: "https://simplyhaircut.id/",
-            repo: null // Repo private/client
+            repo: null
         }
     },
     {
         id: 3,
         title: "Modern Personal Portfolio",
-        description: "My personal professional showcase built with performance and interactivity in mind. Utilizing a Bento-grid layout to organize content effectively, featuring smooth page transitions and a highly responsive design for all devices.",
-        tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+        description: "A high-performance cinematic portfolio built with Next.js 15, focusing on editorial design and smooth interaction.",
+        tech: ["Nextjs", "TypeScript", "Tailwind CSS", "Framer Motion"],
         image: "/project-3.jpeg",
+        features: [
+            "Next.js 15 Server-Side Rendering (SSR) for optimal performance.",
+            "Lighthouse Score 100/100 through meticulous asset optimization.",
+            "A24-inspired Editorial UI with custom spring-based animations.",
+            "Dynamic Project Indexing with fluid modal transitions."
+        ],
         links: {
-            demo: "#", // Link ke diri sendiri (atau kosongkan jika belum deploy)
-            repo: "https://github.com/username/portfolio" // Boleh diisi jika mau open source
+            demo: "#",
+            repo: "https://github.com/username/portfolio"
         }
     }
 ];

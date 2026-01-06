@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const Experience = () => {
+const Experience: React.FC = () => {
     return (
         <section id="experience" className="py-24 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0B1120]">
             <div className="max-w-7xl mx-auto px-6 md:px-12">

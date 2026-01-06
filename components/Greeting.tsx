@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 // Hapus import motion jika tidak dipakai animasi berat disini, 
 // atau biarkan div biasa biar ringan.
 
-export default function Greeting() {
+const Greeting: React.FC = () => {
     const [text, setText] = useState('Hello');
     const [icon, setIcon] = useState('👋');
     const [mounted, setMounted] = useState(false);
@@ -33,4 +33,6 @@ export default function Greeting() {
             {/* Hapus "I'm [Nama]" dari sini karena sudah ada di Hero.tsx */}
         </div>
     );
-}
+};
+
+export default Greeting;

@@ -2,15 +2,14 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import ProjectCard from './ProjectCard';
 import { projects } from '@/data/projects';
-import { X, ExternalLink, Github } from 'lucide-react';
+import { X, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
+import { Project } from '@/types';
 
-const Projects = () => {
-    const [selectedProject, setSelectedProject] = useState<any>(null);
+const Projects: React.FC = () => {
+    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-    // Fungsi helper untuk mendapatkan logo monokromatik dari Simple Icons
     const getLogoUrl = (name: string) => {
         const slug = name.toLowerCase().replace(/\s+/g, '').replace(/\.js/g, 'dotjs');
         return `https://cdn.simpleicons.org/${slug}`;
@@ -19,6 +18,7 @@ const Projects = () => {
     return (
         <section id="projects" className="py-24 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0B1120] relative text-left">
             <div className="max-w-7xl mx-auto px-6 md:px-12">
+
                 {/* Section Title - Centered */}
                 <div className="flex flex-col items-center mb-12">
                     <h2 className="text-sm md:text-base tracking-[0.2em] font-bold text-slate-900 dark:text-white uppercase font-mono text-center">
@@ -27,23 +27,37 @@ const Projects = () => {
                     <div className="h-[2px] w-12 bg-indigo-500 mt-2"></div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+                {/* PROJECT LIST VIEW */}
+                <div className="divide-y divide-slate-100 dark:divide-slate-800">
                     {projects.map((project, index) => (
-                        <ProjectCard
+                        <motion.div
                             key={project.id}
-                            project={project}
-                            index={index}
-                            onOpen={setSelectedProject}
-                        />
+                            onClick={() => setSelectedProject(project)}
+                            className="group cursor-pointer py-10 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:px-4 transition-all duration-500"
+                        >
+                            <div className="flex items-start gap-8">
+                                <span className="text-xs font-mono text-slate-400 mt-2 font-bold">
+                                    /{String(index + 1).padStart(2, '0')}
+                                </span>
+                                <div>
+                                    <h3 className="text-xl md:text-2xl font-black uppercase tracking-tighter group-hover:text-indigo-500 transition-colors duration-300">
+                                        {project.title}
+                                    </h3>
+                                    <p className="text-xs tracking-wider text-slate-500 dark:text-slate-400 mt-2 font-medium">
+                                        {project.tech.join(' • ')}
+                                    </p>
+                                </div>
+                            </div>
+                            <ArrowRight className="w-5 h-5 text-slate-300 group-hover:text-indigo-500 group-hover:translate-x-3 transition-all duration-500" />
+                        </motion.div>
                     ))}
                 </div>
             </div>
 
-            {/* Centered Modal System */}
+            {/* MODAL - Pas di Desktop & Mobile dengan Warna Asli */}
             <AnimatePresence>
                 {selectedProject && (
                     <>
-                        {/* Backdrop - High Contrast Dark Overlay */}
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -52,87 +66,93 @@ const Projects = () => {
                             className="fixed inset-0 bg-black/90 backdrop-blur-md z-[100]"
                         />
 
-                        {/* Centered Modal Content - A24 Editorial Style */}
-                        <div className="fixed inset-0 flex items-center justify-center z-[101] p-4 pointer-events-none">
+                        <div className="fixed inset-0 flex items-center justify-center z-[101] p-4 md:p-8 pointer-events-none">
                             <motion.div
-                                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                                animate={{ opacity: 1, scale: 1, y: 0 }}
-                                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                                initial={{ opacity: 0, y: 20, scale: 0.98 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                exit={{ opacity: 0, y: 20, scale: 0.98 }}
                                 transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                                className="pointer-events-auto w-full max-w-5xl bg-white dark:bg-[#0B1120] border border-slate-200 dark:border-slate-800 overflow-hidden shadow-2xl rounded-none"
+                                className="pointer-events-auto w-full max-w-3xl max-h-[85vh] bg-white dark:bg-[#0B1120] border border-slate-200 dark:border-slate-800 overflow-y-auto shadow-2xl scrollbar-hide"
                             >
-                                <div className="grid grid-cols-1 md:grid-cols-2">
-                                    {/* Project Image Frame */}
-                                    <div className="relative aspect-square md:aspect-auto h-full min-h-[400px] bg-slate-900">
-                                        <Image
-                                            src={selectedProject.image || '/placeholder.png'}
-                                            alt={selectedProject.title}
-                                            fill
-                                            className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                                        />
+                                {/* Modal Banner - Cinematic Grayscale */}
+                                <div className="relative aspect-video bg-slate-900">
+                                    <Image
+                                        src={selectedProject.image}
+                                        alt="Cover"
+                                        fill
+                                        className="object-cover grayscale hover:grayscale-0 transition-all duration-1000 ease-in-out"
+                                    />
+                                    <button
+                                        onClick={() => setSelectedProject(null)}
+                                        className="absolute top-4 right-4 p-2 bg-black/50 backdrop-blur-md text-white hover:bg-white hover:text-black transition-all"
+                                    >
+                                        <X className="w-4 h-4" />
+                                    </button>
+                                </div>
+
+                                {/* Modal Content */}
+                                <div className="p-6 md:p-10 space-y-10 text-left">
+                                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-200 dark:border-slate-800 pb-8">
+                                        <div className="space-y-1">
+                                            <p className="text-[10px] tracking-[0.3em] text-slate-400 font-mono font-bold uppercase">
+                                                Case Studio / {String(selectedProject.id).padStart(2, '0')}
+                                            </p>
+                                            <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-tight">
+                                                {selectedProject.title}
+                                            </h3>
+                                        </div>
+                                        <div className="flex gap-6 text-[11px] font-black uppercase tracking-widest shrink-0">
+                                            {selectedProject.links.demo && (
+                                                <a href={selectedProject.links.demo} target="_blank" className="hover:text-indigo-500 underline underline-offset-4 decoration-indigo-500/30 hover:decoration-indigo-500 transition-all">
+                                                    Live Demo ↗
+                                                </a>
+                                            )}
+                                            {selectedProject.links.repo && (
+                                                <a href={selectedProject.links.repo} target="_blank" className="hover:text-indigo-500 underline underline-offset-4 decoration-indigo-500/30 hover:decoration-indigo-500 transition-all">
+                                                    Github ↗
+                                                </a>
+                                            )}
+                                        </div>
                                     </div>
 
-                                    {/* Text Content Grid */}
-                                    <div className="p-8 md:p-14 flex flex-col justify-between relative bg-white dark:bg-[#0B1120]">
-                                        <button
-                                            onClick={() => setSelectedProject(null)}
-                                            className="absolute top-8 right-8 text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
-                                        >
-                                            <X className="w-6 h-6" />
-                                        </button>
-
-                                        <div className="space-y-10 uppercase">
-                                            {/* Header Detail */}
-                                            <div>
-                                                <p className="text-[10px] tracking-[0.4em] text-slate-400 mb-3 font-mono underline underline-offset-4">
-                                                    ARCHIVE / NO.{String(selectedProject.id).padStart(3, '0')}
-                                                </p>
-                                                <h3 className="text-4xl md:text-5xl font-black tracking-tighter leading-none text-slate-900 dark:text-white">
-                                                    {selectedProject.title}
-                                                </h3>
-                                            </div>
-
-                                            {/* Synopsis Section */}
-                                            <div className="space-y-4">
-                                                <p className="text-[10px] tracking-[0.3em] text-slate-400 font-mono font-bold">SYNOPSIS</p>
-                                                <p className="text-sm italic leading-relaxed text-slate-600 dark:text-slate-400 font-medium max-w-md">
+                                    {/* Details Grid */}
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                                        <div className="md:col-span-2 space-y-6">
+                                            <div className="space-y-3">
+                                                <p className="text-[10px] tracking-[0.3em] text-slate-400 font-mono font-bold uppercase italic">Synopsis</p>
+                                                <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 italic leading-relaxed font-medium">
                                                     {selectedProject.description}
                                                 </p>
                                             </div>
 
-                                            {/* Tech Apparatus with Icons */}
-                                            <div className="space-y-5">
-                                                <p className="text-[10px] tracking-[0.3em] text-slate-400 font-mono font-bold">TECH APPARATUS</p>
-                                                <div className="flex flex-wrap gap-x-6 gap-y-4">
-                                                    {selectedProject.tech.map((t: string) => (
-                                                        <div key={t} className="flex items-center gap-2.5 group/icon">
-                                                            <img
-                                                                src={getLogoUrl(t)}
-                                                                alt={t}
-                                                                className="w-4 h-4 grayscale opacity-40 group-hover/icon:opacity-100 group-hover/icon:grayscale-0 transition-all duration-300"
-                                                                onError={(e) => (e.currentTarget.style.display = 'none')}
-                                                            />
-                                                            <span className="text-[11px] font-black tracking-tighter text-slate-800 dark:text-slate-200">
-                                                                {t}
-                                                            </span>
-                                                        </div>
+                                            <div className="space-y-4">
+                                                <p className="text-[10px] tracking-[0.3em] text-slate-400 font-mono font-bold uppercase italic">Key Features</p>
+                                                <ul className="space-y-3">
+                                                    {selectedProject.features?.map((f: string) => (
+                                                        <li key={f} className="flex gap-3 text-xs md:text-sm font-bold uppercase tracking-tight text-slate-800 dark:text-slate-200">
+                                                            <span className="text-indigo-500">→</span>
+                                                            <span>{f}</span>
+                                                        </li>
                                                     ))}
-                                                </div>
+                                                </ul>
                                             </div>
                                         </div>
 
-                                        {/* Action Links */}
-                                        <div className="pt-10 flex gap-12 border-t border-slate-100 dark:border-slate-800 mt-12">
-                                            {selectedProject.links.demo && (
-                                                <a href={selectedProject.links.demo} target="_blank" className="flex items-center gap-2 text-[11px] font-black tracking-[0.25em] text-slate-900 dark:text-white hover:text-indigo-500 transition-colors">
-                                                    VIEW LIVE ↗
-                                                </a>
-                                            )}
-                                            {selectedProject.links.repo && (
-                                                <a href={selectedProject.links.repo} target="_blank" className="flex items-center gap-2 text-[11px] font-black tracking-[0.25em] text-slate-900 dark:text-white hover:text-indigo-500 transition-colors">
-                                                    SOURCE CODE ↗
-                                                </a>
-                                            )}
+                                        {/* GANTI APPARATUS MENJADI TECHNICAL TOOLS */}
+                                        <div className="space-y-4">
+                                            <p className="text-[10px] tracking-[0.3em] text-slate-400 font-mono font-bold uppercase italic">Technical Tools</p>
+                                            <div className="flex flex-wrap gap-4">
+                                                {selectedProject.tech.map((t: string) => (
+                                                    <div key={t} className="flex items-center gap-2 group/icon">
+                                                        <img
+                                                            src={getLogoUrl(t)}
+                                                            alt={t}
+                                                            className="w-3.5 h-3.5 grayscale opacity-50 group-hover/icon:opacity-100 transition-all"
+                                                        />
+                                                        <span className="text-[9px] font-black tracking-tighter uppercase">{t}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

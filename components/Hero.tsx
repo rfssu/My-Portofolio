@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-const Hero = () => {
+const Hero: React.FC = () => {
     return (
         <section className="min-h-screen flex flex-col justify-end pt-32 pb-16 bg-white dark:bg-[#0B1120]">
             <div className="max-w-7xl w-full mx-auto px-6 md:px-12 flex flex-col">
@@ -16,73 +16,80 @@ const Hero = () => {
                     transition={{ duration: 1.5, ease: "easeOut" }}
                     className="relative w-full h-[50vh] md:h-[65vh] overflow-hidden mb-12"
                 >
-
                     <Image
                         src="/picture-cinematic.png"
                         alt="Cinematic Portfolio Header"
                         fill
-                        className="object-cover grayscale hover:grayscale-0 transition-all duration-1000 ease-in-out"
+                        className="object-cover transition-all duration-1000 ease-in-out"
                         priority
                     />
                     {/* Subtle Fade Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#0B1120] to-transparent opacity-30"></div>
                 </motion.div>
 
-                {/* Metadata Grid - A24 Table Style */}
+                {/* Two-Column Grid */}
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, delay: 0.4 }}
-                    className="grid grid-cols-1 md:grid-cols-3 gap-12 text-sm uppercase"
+                    className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-12 md:gap-20 items-start"
                 >
-                    {/* Column 1: Identity */}
+                    {/* Left Column: Identity & Skills */}
                     <div className="space-y-6">
+                        {/* Name */}
                         <div>
-                            <p className="text-[10px] tracking-[0.2em] text-slate-400 mb-1">DEVELOPER</p>
-                            <h2 className="text-lg font-bold text-slate-900 dark:text-white leading-tight">
-                                RAFI SAIFULLAH <br /> SATRIA UTAMA
-                            </h2>
+                            <h1 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white leading-tight tracking-tight uppercase">
+                                RAFI SAIFULLAH SATRIA UTAMA
+                            </h1>
                         </div>
-                        <div className="flex items-center gap-2">
-                            <span className="relative flex h-2 w-2">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                            </span>
-                            <span className="text-[10px] tracking-widest font-bold">AVAILABLE FOR WORK</span>
+
+                        {/* Status & Location */}
+                        <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+                            <div className="flex items-center gap-2">
+                                <span className="relative flex h-2 w-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                                </span>
+                                <span className="text-[10px] tracking-[0.2em] font-bold text-slate-900 dark:text-white uppercase">Available for Work</span>
+                            </div>
+
+                            <div className="flex items-center gap-2">
+                                <span className="text-[10px] tracking-[0.2em] text-slate-400 uppercase">Location:</span>
+                                <span className="text-sm font-medium text-slate-900 dark:text-white">Indonesia</span>
+                            </div>
+                        </div>
+
+                        {/* Skills */}
+                        <div>
+                            <p className="text-[10px] tracking-[0.2em] text-slate-400 uppercase mb-3">Specialization</p>
+                            <div className="flex items-center gap-3">
+                                <span className="text-xs font-medium px-3 py-1 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white">
+                                    UI/UX Design
+                                </span>
+                                <span className="text-xs font-medium px-3 py-1 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white">
+                                    Mobile Dev
+                                </span>
+                                <span className="text-xs font-medium px-3 py-1 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white">
+                                    Frontend
+                                </span>
+                                <span className="text-xs font-medium px-3 py-1 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white">
+                                    Backend
+                                </span>
+                            </div>
                         </div>
                     </div>
 
-                    {/* Column 2: Focus & Tech */}
-                    <div className="space-y-6">
+                    {/* Right Column: Current Focus */}
+                    <div className="md:pt-2 md:min-w-[280px]">
                         <div>
-                            <p className="text-[10px] tracking-[0.2em] text-slate-400 mb-1">TECH STACK</p>
-                            <p className="text-base font-bold text-slate-900 dark:text-white leading-relaxed">
-                                LARAVEL • NEXT.JS <br /> REACT • TYPESCRIPT
+                            <p className="text-[10px] tracking-[0.2em] text-slate-400 uppercase mb-3">
+                                Currently Building
+                            </p>
+                            <p className="text-sm italic text-slate-600 dark:text-slate-400 leading-relaxed">
+                                Architecting unified cross-platform ecosystems for seamless mobile and web experiences.
                             </p>
                         </div>
-                        <div>
-                            <p className="text-[10px] tracking-[0.2em] text-slate-400 mb-1">LOCATION</p>
-                            <p className="text-base font-bold text-slate-900 dark:text-white">
-                                YOGYAKARTA, ID
-                            </p>
-                        </div>
-                    </div>
 
-                    {/* Column 3: Narrative & CTA */}
-                    <div className="flex flex-col justify-between h-full space-y-8">
-                        <p className="text-sm italic text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
-                            Focused on building high-performance digital products that solve real-world problems through clean code and intuitive experiences.
-                        </p>
-                        <div className="flex gap-8 border-t border-slate-100 dark:border-slate-800 pt-6">
-                            <a href="#projects" className="group flex items-center gap-2 hover:text-indigo-500 transition-colors">
-                                <span className="font-black text-xs">VIEW PROJECTS</span>
-                                <span className="text-xs group-hover:translate-x-1 transition-transform">↗</span>
-                            </a>
-                            <a href="mailto:rafi.ss.utama@gmail.com" className="group flex items-center gap-2 hover:text-indigo-500 transition-colors">
-                                <span className="font-black text-xs">GET IN TOUCH</span>
-                                <span className="text-xs group-hover:translate-x-1 transition-transform">↗</span>
-                            </a>
-                        </div>
                     </div>
                 </motion.div>
             </div>
