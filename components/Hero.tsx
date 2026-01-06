@@ -62,7 +62,7 @@ const Hero = () => {
                         </div>
                         <div>
                             <p className="text-[10px] tracking-[0.2em] text-slate-400 mb-1">LOCATION</p>
-                            <p className="text-base font-bold text-slate-900 dark:text-white italic">
+                            <p className="text-base font-bold text-slate-900 dark:text-white">
                                 YOGYAKARTA, ID
                             </p>
                         </div>
@@ -70,7 +70,7 @@ const Hero = () => {
 
                     {/* Column 3: Narrative & CTA */}
                     <div className="flex flex-col justify-between h-full space-y-8">
-                        <p className="text-sm text-slate-600 dark:text-slate-400 normal-case leading-relaxed font-medium">
+                        <p className="text-sm italic text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
                             Focused on building high-performance digital products that solve real-world problems through clean code and intuitive experiences.
                         </p>
                         <div className="flex gap-8 border-t border-slate-100 dark:border-slate-800 pt-6">

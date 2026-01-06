@@ -29,7 +29,7 @@ const ProjectCard: React.FC<ProjectProps> = ({ project, index, onOpen }) => {
                 />
             </div>
             <div className="space-y-1">
-                <p className="text-[10px] font-bold tracking-tighter text-slate-400 uppercase">
+                <p className="text-[10px] italic font-medium tracking-tight text-slate-400">
                     2025 • {project.tech[0]}
                 </p>
                 <h3 className="text-xl font-bold tracking-tight text-slate-900 dark:text-white uppercase leading-none">

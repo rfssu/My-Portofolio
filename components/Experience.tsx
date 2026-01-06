@@ -8,12 +8,12 @@ const Experience = () => {
         <section id="experience" className="py-24 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0B1120]">
             <div className="max-w-7xl mx-auto px-6 md:px-12">
 
-                {/* Section Header - Centered Title */}
-                <div className="flex flex-col items-center mb-20">
-                    <h2 className="text-sm md:text-base tracking-[0.6em] font-black text-slate-900 dark:text-white uppercase font-mono text-center">
-                        PROFESSIONAL CHRONOLOGY
+                {/* Section Title - Centered */}
+                <div className="flex flex-col items-center mb-12">
+                    <h2 className="text-sm md:text-base tracking-[0.2em] font-bold text-slate-900 dark:text-white uppercase font-mono text-center">
+                        Professional Chronology
                     </h2>
-                    <div className="h-[2px] w-12 bg-indigo-500 mt-4"></div>
+                    <div className="h-[2px] w-12 bg-indigo-500 mt-2"></div>
                 </div>
 
                 {/* Main Two-Column Layout */}
@@ -21,9 +21,8 @@ const Experience = () => {
 
                     {/* LEFT COLUMN: Professional Careers */}
                     <div className="space-y-12">
-                        <div className="flex items-center gap-4 mb-12 border-b border-slate-900 dark:border-white pb-4">
-                            <span className="text-[10px] font-mono text-indigo-500 font-bold tracking-widest">01/</span>
-                            <h3 className="text-2xl font-black uppercase tracking-tighter text-left">Professional Careers</h3>
+                        <div className="border-b border-slate-200 dark:border-slate-800 pb-4 mb-12">
+                            <h3 className="text-xl font-bold uppercase tracking-tight">Professional Careers</h3>
                         </div>
 
                         <div className="flex flex-col gap-12">
@@ -32,7 +31,7 @@ const Experience = () => {
                                 <p className="text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-2">2024 — Present</p>
                                 <h4 className="text-xl font-black uppercase tracking-tighter mb-1">Full-Stack Developer</h4>
                                 <p className="text-[10px] tracking-[0.2em] font-bold text-indigo-500 uppercase mb-4">Quadrant Co. • Project-based</p>
-                                <p className="text-sm text-slate-600 dark:text-slate-400 italic leading-relaxed font-medium normal-case">
+                                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
                                     Collaborated within a specialized IT team to architect and deliver high-performance web solutions.
                                 </p>
                             </div>
@@ -42,7 +41,7 @@ const Experience = () => {
                                 <p className="text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-2">2025 — Present</p>
                                 <h4 className="text-xl font-black uppercase tracking-tighter mb-1">Game Developer & Designer</h4>
                                 <p className="text-[10px] tracking-[0.2em] font-bold text-indigo-500 uppercase mb-4">Ourmind Studio • Personal Project</p>
-                                <p className="text-sm text-slate-600 dark:text-slate-400 italic leading-relaxed font-medium normal-case">
+                                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
                                     Independent game conceptualization and technical implementation of gameplay mechanics.
                                 </p>
                             </div>
@@ -52,7 +51,7 @@ const Experience = () => {
                                 <p className="text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-2">Oct 2024 — Feb 2025</p>
                                 <h4 className="text-xl font-black uppercase tracking-tighter mb-1 text-left">Program Development</h4>
                                 <p className="text-[10px] tracking-[0.2em] font-bold text-indigo-500 uppercase mb-4">PT Surya Citra Media • Jakarta</p>
-                                <p className="text-sm text-slate-600 dark:text-slate-400 italic leading-relaxed font-medium normal-case">
+                                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
                                     Assisted in strategic program planning and creative development for major media content.
                                 </p>
                             </div>
@@ -62,7 +61,7 @@ const Experience = () => {
                                 <p className="text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-2">Feb 2023 — Jun 2023</p>
                                 <h4 className="text-xl font-black uppercase tracking-tighter mb-1">Research & Development</h4>
                                 <p className="text-[10px] tracking-[0.2em] font-bold text-indigo-500 uppercase mb-4">NET MEDIA TAMA TELEVISI • Jakarta</p>
-                                <p className="text-sm text-slate-600 dark:text-slate-400 italic leading-relaxed font-medium normal-case">
+                                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
                                     Conducted comprehensive research on industry trends to identify audience preferences.
                                 </p>
                             </div>
@@ -73,23 +72,20 @@ const Experience = () => {
                     <div className="space-y-24">
 
                         {/* Education */}
-                        <div className="text-left">
-                            <div className="flex items-center gap-4 mb-10 border-b border-slate-900 dark:border-white pb-4">
-                                <span className="text-[10px] font-mono text-indigo-500 font-bold tracking-widest">02/</span>
-                                <h3 className="text-2xl font-black uppercase tracking-tighter">Education</h3>
+                        <div>
+                            <div className="border-b border-slate-200 dark:border-slate-800 pb-4 mb-8">
+                                <h3 className="text-xl font-bold uppercase tracking-tight">Education</h3>
                             </div>
                             <div className="pl-6 border-l border-slate-100 dark:border-slate-800">
                                 <h4 className="text-lg font-black uppercase tracking-tighter">Bach. of Computer Science</h4>
-                                <p className="text-sm text-slate-500 italic mt-1 font-medium">Universitas Muhammadiyah Yogyakarta</p>
-                                <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-slate-400 mt-3">2022 — Present</p>
+                                <p className="text-sm text-slate-500 mt-1 font-medium">Universitas Muhammadiyah Yogyakarta</p>
                             </div>
                         </div>
 
                         {/* Certifications */}
-                        <div className="text-left">
-                            <div className="flex items-center gap-4 mb-10 border-b border-slate-900 dark:border-white pb-4">
-                                <span className="text-[10px] font-mono text-indigo-500 font-bold tracking-widest">03/</span>
-                                <h3 className="text-2xl font-black uppercase tracking-tighter">Certifications</h3>
+                        <div>
+                            <div className="border-b border-slate-200 dark:border-slate-800 pb-4 mb-8">
+                                <h3 className="text-xl font-bold uppercase tracking-tight">Certifications</h3>
                             </div>
                             <div className="space-y-8 pl-6 border-l border-slate-100 dark:border-slate-800">
                                 <div>
@@ -104,21 +100,20 @@ const Experience = () => {
                         </div>
 
                         {/* Honors & Awards */}
-                        <div className="text-left">
-                            <div className="flex items-center gap-4 mb-10 border-b border-slate-900 dark:border-white pb-4">
-                                <span className="text-[10px] font-mono text-indigo-500 font-bold tracking-widest">04/</span>
-                                <h3 className="text-2xl font-black uppercase tracking-tighter">Honors & Awards</h3>
+                        <div>
+                            <div className="border-b border-slate-200 dark:border-slate-800 pb-4 mb-8">
+                                <h3 className="text-xl font-bold uppercase tracking-tight">Honors & Awards</h3>
                             </div>
                             <div className="space-y-8 pl-6 border-l border-slate-100 dark:border-slate-800">
                                 <div>
                                     <h4 className="text-lg font-black uppercase tracking-tighter">Top 3 The Gade Sociopreneurship</h4>
                                     <p className="text-[10px] font-mono tracking-widest text-slate-400 uppercase font-bold">PT. Pegadaian • 2023</p>
-                                    <p className="text-sm text-slate-600 dark:text-slate-400 italic mt-2 font-medium">Developed an innovative business solution with the Inclue Indonesia team.</p>
+                                    <p className="text-sm text-slate-600 dark:text-slate-400 mt-2 font-medium">Developed an innovative business solution with the Inclue Indonesia team.</p>
                                 </div>
                                 <div>
                                     <h4 className="text-lg font-black uppercase tracking-tighter">Business Acumen Program</h4>
                                     <p className="text-[10px] font-mono tracking-widest text-slate-400 uppercase font-bold">Tanoto Foundation • 2022</p>
-                                    <p className="text-sm text-slate-600 dark:text-slate-400 italic mt-2 font-medium">Selected as a finalist in a prestigious future business leaders program.</p>
+                                    <p className="text-sm text-slate-600 dark:text-slate-400 mt-2 font-medium">Selected as a finalist in a prestigious future business leaders program.</p>
                                 </div>
                             </div>
                         </div>

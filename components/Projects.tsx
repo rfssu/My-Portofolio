@@ -19,12 +19,12 @@ const Projects = () => {
     return (
         <section id="projects" className="py-24 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0B1120] relative text-left">
             <div className="max-w-7xl mx-auto px-6 md:px-12">
-                {/* Centered Title Section - Consistent with Tech Stack */}
-                <div className="flex flex-col items-center mb-16">
-                    <h2 className="text-sm md:text-base tracking-[0.6em] font-black text-slate-900 dark:text-white uppercase font-mono text-center">
-                        My Projects
+                {/* Section Title - Centered */}
+                <div className="flex flex-col items-center mb-12">
+                    <h2 className="text-sm md:text-base tracking-[0.2em] font-bold text-slate-900 dark:text-white uppercase font-mono text-center">
+                        Selected Works
                     </h2>
-                    <div className="h-[2px] w-12 bg-indigo-500 mt-4"></div>
+                    <div className="h-[2px] w-12 bg-indigo-500 mt-2"></div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
@@ -84,7 +84,7 @@ const Projects = () => {
                                         <div className="space-y-10 uppercase">
                                             {/* Header Detail */}
                                             <div>
-                                                <p className="text-[10px] tracking-[0.4em] text-slate-400 mb-3 font-mono italic underline underline-offset-4">
+                                                <p className="text-[10px] tracking-[0.4em] text-slate-400 mb-3 font-mono underline underline-offset-4">
                                                     ARCHIVE / NO.{String(selectedProject.id).padStart(3, '0')}
                                                 </p>
                                                 <h3 className="text-4xl md:text-5xl font-black tracking-tighter leading-none text-slate-900 dark:text-white">
@@ -95,7 +95,7 @@ const Projects = () => {
                                             {/* Synopsis Section */}
                                             <div className="space-y-4">
                                                 <p className="text-[10px] tracking-[0.3em] text-slate-400 font-mono font-bold">SYNOPSIS</p>
-                                                <p className="text-sm normal-case italic leading-relaxed text-slate-600 dark:text-slate-400 font-medium max-w-md">
+                                                <p className="text-sm italic leading-relaxed text-slate-600 dark:text-slate-400 font-medium max-w-md">
                                                     {selectedProject.description}
                                                 </p>
                                             </div>

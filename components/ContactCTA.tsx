@@ -13,27 +13,19 @@ const ContactCTA = () => {
                 transition={{ duration: 0.8 }}
                 className="max-w-7xl mx-auto px-6 md:px-12"
             >
-                {/* Minimalist Heading - Consistent with other sections */}
-                <div className="flex items-center gap-4 mb-12">
-                    <span className="text-[10px] font-mono text-indigo-500 font-bold tracking-widest">05/</span>
-                    <h2 className="text-sm md:text-base tracking-[0.4em] font-black text-slate-900 dark:text-white uppercase font-mono">
-                        Inquiries & Collaboration
-                    </h2>
-                </div>
-
-                {/* Large Display Email - A24 Title Style */}
+                {/* Large Display Email - No Section Title */}
                 <div className="mb-24">
-                    <p className="text-[10px] tracking-[0.5em] text-slate-400 uppercase font-mono mb-4">Drop a message</p>
+                    <p className="text-[10px] tracking-[0.2em] text-slate-400 uppercase font-mono mb-4">Drop a message</p>
                     <a
                         href="mailto:rafi.ss.utama@gmail.com"
-                        className="block text-4xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase leading-none hover:text-indigo-500 transition-all duration-500 break-words"
+                        className="block text-4xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase leading-none hover:text-indigo-500 transition-all duration-300 break-words"
                     >
                         rafi.ss.utama<br />@gmail.com
                     </a>
                 </div>
 
-                {/* Social Links & Legal-style Footer Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 pt-12 border-t border-slate-900 dark:border-white">
+                {/* Social Links & Footer Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 pt-12 border-t border-slate-200 dark:border-slate-800">
                     {/* Links Column */}
                     <div className="md:col-span-8 flex flex-wrap gap-x-12 gap-y-4">
                         <a href="https://github.com/rfssu" target="_blank" className="group flex flex-col">

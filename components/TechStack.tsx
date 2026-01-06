@@ -30,12 +30,12 @@ const TechStack = () => {
     return (
         <section className="py-12 border-y border-slate-200 dark:border-slate-800 overflow-hidden bg-white dark:bg-[#0B1120]">
 
-            {/* Editorial Title - Rapat & Minimalis */}
-            <div className="flex flex-col items-center mb-6"> {/* Margin bottom diperkecil dari 16 ke 8 */}
-                <h2 className="text-sm md:text-base tracking-[0.6em] font-black text-slate-900 dark:text-white uppercase font-mono">
-                    TECHNICAL TOOLS
+            {/* Section Title - Centered */}
+            <div className="flex flex-col items-center mb-12">
+                <h2 className="text-sm md:text-base tracking-[0.2em] font-bold text-slate-900 dark:text-white uppercase font-mono">
+                    Technical Tools
                 </h2>
-                <div className="h-[2px] w-8 bg-indigo-500 mt-2"></div> {/* Jarak garis juga dirapatkan */}
+                <div className="h-[2px] w-12 bg-indigo-500 mt-2"></div>
             </div>
 
             <div className="flex flex-col gap-6 relative"> {/* Gap antar baris ticker dirapatkan dari 10 ke 6 */}
