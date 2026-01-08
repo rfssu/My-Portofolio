@@ -36,14 +36,13 @@ const ContactCTA: React.FC = () => {
                         </a>
                     </div>
 
-                    {/* Production Credits Column */}
-                    <div className="md:col-span-4 md:text-right space-y-2">
-                        <p className="text-[10px] font-black tracking-[0.2em] uppercase text-slate-900 dark:text-white">
-                            © {new Date().getFullYear()} RF-PORTO PRODUCTION
+                    {/* Credits Column */}
+                    <div className="md:col-span-4 md:text-right space-y-1.5">
+                        <p className="text-[10px] font-bold tracking-wider text-slate-900 dark:text-white">
+                            © {new Date().getFullYear()} Rafi Saifullah
                         </p>
-                        <p className="text-[9px] font-mono tracking-widest text-slate-500 leading-relaxed uppercase">
-                            Designed for performance / <br />
-                            Built with Next.js 15 & Framer
+                        <p className="text-[9px] font-mono text-slate-500 leading-relaxed">
+                            Built with Next.js & Framer Motion
                         </p>
                     </div>
                 </div>
