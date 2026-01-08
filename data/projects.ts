@@ -51,5 +51,24 @@ export const projects: Project[] = [
             demo: "#",
             repo: "https://github.com/rfssu/My-Portofolio"
         }
+    },
+
+    {
+        id: 4,
+        title: "Ourfield: Mobile App for Sports Field",
+        description: "A comprehensive mobile solution designed to streamline the process of discovering and booking local sports facilities through an intuitive user interface.",
+        tech: ["Figma"],
+        image: "/project4.png",
+        features: [
+            "End-to-end User Journey design for field discovery, real-time availability checking, and seamless booking.",
+            "Location-based Search Interface optimized for high-speed facility filtering and discovery.",
+            "Developed a scalable Design System in Figma with reusable components to ensure visual consistency across the platform.",
+            "Interactive High-Fidelity Prototyping to simulate the complete user booking experience and field management flow."
+        ],
+        links: {
+            demo: "#",
+            repo: null
+        }
     }
+
 ];
