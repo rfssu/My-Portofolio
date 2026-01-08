@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { ArrowLeft, Trophy, Zap, Users, Star } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ProjectFun1 from './components/ProjectFun1';
 import SkillTree from './components/SkillTree';
 import StreamWidget from './components/StreamWidget';
@@ -11,6 +11,59 @@ import StreamWidget from './components/StreamWidget';
 export default function GameDevPage() {
     const router = useRouter();
     const [isReturning, setIsReturning] = useState(false);
+
+    // Typing animation states
+    const [greeting, setGreeting] = useState('Hello');
+    const [currentTextIndex, setCurrentTextIndex] = useState(0);
+    const [displayedText, setDisplayedText] = useState("");
+    const [isDeleting, setIsDeleting] = useState(false);
+    const [typingSpeed, setTypingSpeed] = useState(100);
+
+    // Get time-based greeting
+    useEffect(() => {
+        const hour = new Date().getHours();
+        if (hour >= 5 && hour < 12) {
+            setGreeting('Good Morning');
+        } else if (hour >= 12 && hour < 18) {
+            setGreeting('Good Afternoon');
+        } else {
+            setGreeting('Good Evening');
+        }
+    }, []);
+
+    // Texts for typing animation
+    const texts = [
+        greeting,
+        "WELCOME TO MY GAME UNIVERSE",
+        "I'M MONARCH // XTRADA404"
+    ];
+
+    useEffect(() => {
+        const currentFullText = texts[currentTextIndex];
+
+        const handleTyping = () => {
+            if (!isDeleting) {
+                if (displayedText.length < currentFullText.length) {
+                    setDisplayedText(currentFullText.substring(0, displayedText.length + 1));
+                    setTypingSpeed(100);
+                } else {
+                    setTimeout(() => setIsDeleting(true), 2000);
+                }
+            } else {
+                if (displayedText.length > 0) {
+                    setDisplayedText(currentFullText.substring(0, displayedText.length - 1));
+                    setTypingSpeed(50);
+                } else {
+                    setIsDeleting(false);
+                    setCurrentTextIndex((prev) => (prev + 1) % texts.length);
+                }
+            }
+        };
+
+        const timer = setTimeout(handleTyping, typingSpeed);
+        return () => clearTimeout(timer);
+    }, [displayedText, isDeleting, currentTextIndex, typingSpeed, greeting]);
+
 
     // Optimized grid - same as enter animation for consistency
     const gridSize = typeof window !== 'undefined'
@@ -125,6 +178,7 @@ export default function GameDevPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                 >
+                    {/* Typing Animation Title */}
                     <motion.div
                         className="inline-block mb-6"
                         animate={{
@@ -136,20 +190,13 @@ export default function GameDevPage() {
                         }}
                         transition={{ duration: 2, repeat: Infinity }}
                     >
-                        <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter">
+                        <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter min-h-[5rem] md:min-h-[7rem]">
                             <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
-                                Game Dev Universe
+                                {displayedText}
+                                <span className="animate-pulse ml-2">|</span>
                             </span>
                         </h1>
                     </motion.div>
-                    <motion.p
-                        className="text-lg md:text-xl text-slate-400 font-mono"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.5 }}
-                    >
-                        [ MONARCH // XTRADA404 ]
-                    </motion.p>
                 </motion.div>
 
                 {/* Game Stats Grid */}

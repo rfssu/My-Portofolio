@@ -5,15 +5,30 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const Hero: React.FC = () => {
-    const texts = [
-        "RAFI SAIFULLAH SATRIA UTAMA",
-        "I'M FULL-STACK DEVELOPER"
-    ];
-
+    const [greeting, setGreeting] = useState('Hello');
     const [currentTextIndex, setCurrentTextIndex] = useState(0);
     const [displayedText, setDisplayedText] = useState("");
     const [isDeleting, setIsDeleting] = useState(false);
     const [typingSpeed, setTypingSpeed] = useState(100);
+
+    // Get time-based greeting
+    useEffect(() => {
+        const hour = new Date().getHours();
+        if (hour >= 5 && hour < 12) {
+            setGreeting('Good Morning');
+        } else if (hour >= 12 && hour < 18) {
+            setGreeting('Good Afternoon');
+        } else {
+            setGreeting('Good Evening');
+        }
+    }, []);
+
+    // Texts for typing animation (includes dynamic greeting)
+    const texts = [
+        greeting,
+        "RAFI SAIFULLAH SATRIA UTAMA",
+        "I'M FULL-STACK DEVELOPER"
+    ];
 
     useEffect(() => {
         const currentFullText = texts[currentTextIndex];
@@ -43,7 +58,7 @@ const Hero: React.FC = () => {
 
         const timer = setTimeout(handleTyping, typingSpeed);
         return () => clearTimeout(timer);
-    }, [displayedText, isDeleting, currentTextIndex, typingSpeed]);
+    }, [displayedText, isDeleting, currentTextIndex, typingSpeed, greeting]);
 
     return (
         <section className="min-h-screen flex flex-col justify-end pt-32 pb-16 bg-white dark:bg-[#0B1120]">
@@ -76,7 +91,7 @@ const Hero: React.FC = () => {
                 >
                     {/* Left Column: Identity & Skills */}
                     <div className="space-y-5 md:space-y-7">
-                        {/* Name */}
+                        {/* Typing Animation - includes greeting */}
                         <div>
                             <h1 className="text-xl md:text-3xl font-black text-slate-900 dark:text-white leading-tight tracking-tight uppercase min-h-[2.5rem] md:min-h-[3rem]">
                                 {displayedText}
