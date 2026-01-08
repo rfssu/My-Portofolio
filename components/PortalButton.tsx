@@ -3,19 +3,38 @@
 import { motion } from 'framer-motion';
 import { Gamepad2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 
 const PortalButton = () => {
     const router = useRouter();
-    const [isPortalActive, setIsPortalActive] = useState(false);
+    const [isRevealing, setIsRevealing] = useState(false);
+
+    // Optimized grid - larger blocks for better performance
+    const gridSize = useMemo(() => {
+        if (typeof window === 'undefined') return { cols: 12, rows: 8 };
+        const cols = Math.ceil(window.innerWidth / 120); // Larger blocks (120px)
+        const rows = Math.ceil(window.innerHeight / 120);
+        return { cols, rows };
+    }, []);
+
+    const totalBlocks = gridSize.cols * gridSize.rows;
 
     const handleClick = () => {
-        setIsPortalActive(true);
+        setIsRevealing(true);
 
-        // Navigate after portal animation
+        // Navigate after smooth animation
         setTimeout(() => {
             router.push('/game-dev');
-        }, 800);
+        }, 1000);
+    };
+
+    // Diagonal wave pattern for smooth connected flow
+    const getWaveDelay = (index: number) => {
+        const row = Math.floor(index / gridSize.cols);
+        const col = index % gridSize.cols;
+        // Diagonal wave from top-left to bottom-right
+        const diagonalDistance = row + col;
+        return diagonalDistance * 0.03; // Smooth stagger
     };
 
     return (
@@ -36,51 +55,62 @@ const PortalButton = () => {
                 <div className="absolute inset-0 bg-indigo-500/10 rounded opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300"></div>
             </motion.button>
 
-            {/* Portal Overlay Animation */}
-            {isPortalActive && (
-                <motion.div
-                    className="fixed inset-0 z-[9999] pointer-events-none"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                >
-                    {/* Portal Circle */}
-                    <motion.div
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+            {/* Optimized Block Reveal Overlay */}
+            {isRevealing && (
+                <div className="fixed inset-0 z-[9999] pointer-events-none overflow-hidden bg-black">
+                    <div
+                        className="grid w-full h-full"
                         style={{
-                            background: 'radial-gradient(circle, rgba(99,102,241,0.8) 0%, rgba(139,92,246,0.6) 50%, rgba(0,0,0,1) 100%)',
-                            boxShadow: '0 0 100px 50px rgba(99,102,241,0.5)',
+                            gridTemplateColumns: `repeat(${gridSize.cols}, 1fr)`,
+                            gridTemplateRows: `repeat(${gridSize.rows}, 1fr)`,
                         }}
-                        initial={{ scale: 0, opacity: 0 }}
-                        animate={{ scale: 100, opacity: 1 }}
-                        transition={{
-                            duration: 0.8,
-                            ease: [0.22, 1, 0.36, 1], // Custom easing
-                        }}
-                    />
+                    >
+                        {[...Array(totalBlocks)].map((_, index) => {
+                            const row = Math.floor(index / gridSize.cols);
+                            const col = index % gridSize.cols;
 
-                    {/* Particle effects */}
-                    {[...Array(20)].map((_, i) => (
-                        <motion.div
-                            key={i}
-                            className="absolute w-1 h-1 bg-indigo-400 rounded-full"
-                            style={{
-                                left: `${50 + Math.random() * 10 - 5}%`,
-                                top: `${50 + Math.random() * 10 - 5}%`,
-                            }}
-                            initial={{ scale: 0, opacity: 0 }}
-                            animate={{
-                                scale: [0, 1, 0],
-                                opacity: [0, 1, 0],
-                                x: (Math.random() - 0.5) * 200,
-                                y: (Math.random() - 0.5) * 200,
-                            }}
-                            transition={{
-                                duration: 0.8,
-                                delay: Math.random() * 0.3,
-                            }}
-                        />
-                    ))}
-                </motion.div>
+                            // Gradient color based on position for visual flow
+                            const getColor = () => {
+                                const diagonal = (row + col) / (gridSize.rows + gridSize.cols);
+                                if (diagonal < 0.3) return 'bg-indigo-600';
+                                if (diagonal < 0.5) return 'bg-purple-600';
+                                if (diagonal < 0.7) return 'bg-violet-600';
+                                return 'bg-fuchsia-600';
+                            };
+
+                            return (
+                                <motion.div
+                                    key={index}
+                                    className={`${getColor()}`}
+                                    style={{
+                                        boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.2)',
+                                    }}
+                                    initial={{
+                                        scale: 0,
+                                        opacity: 0,
+                                    }}
+                                    animate={{
+                                        scale: 1,
+                                        opacity: 1,
+                                    }}
+                                    transition={{
+                                        duration: 0.4,
+                                        delay: getWaveDelay(index),
+                                        ease: [0.34, 1.56, 0.64, 1], // Smooth spring easing
+                                    }}
+                                />
+                            );
+                        })}
+                    </div>
+
+                    {/* Smooth gradient overlay for depth */}
+                    <motion.div
+                        className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 via-transparent to-purple-500/20 pointer-events-none"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.6, delay: 0.3 }}
+                    />
+                </div>
             )}
         </>
     );

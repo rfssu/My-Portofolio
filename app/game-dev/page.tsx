@@ -9,11 +9,26 @@ export default function GameDevPage() {
     const router = useRouter();
     const [isReturning, setIsReturning] = useState(false);
 
+    // Optimized grid - same as enter animation for consistency
+    const gridSize = typeof window !== 'undefined'
+        ? { cols: Math.ceil(window.innerWidth / 120), rows: Math.ceil(window.innerHeight / 120) }
+        : { cols: 12, rows: 8 };
+
+    const totalBlocks = gridSize.cols * gridSize.rows;
+
     const handleReturn = () => {
         setIsReturning(true);
         setTimeout(() => {
             router.push('/');
-        }, 800);
+        }, 1000);
+    };
+
+    // Diagonal wave pattern for smooth exit
+    const getWaveDelay = (index: number) => {
+        const row = Math.floor(index / gridSize.cols);
+        const col = index % gridSize.cols;
+        const diagonalDistance = row + col;
+        return diagonalDistance * 0.03;
     };
 
     const gameStats = [
@@ -25,23 +40,53 @@ export default function GameDevPage() {
 
     return (
         <div className="min-h-screen bg-[#0a0a0a] text-white overflow-hidden relative">
-            {/* Return Portal Animation */}
+            {/* Return Block Reveal Animation */}
             {isReturning && (
-                <motion.div
-                    className="fixed inset-0 z-[9999] pointer-events-none"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                >
-                    <motion.div
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                <div className="fixed inset-0 z-[9999] pointer-events-none overflow-hidden bg-black">
+                    <div
+                        className="grid w-full h-full"
                         style={{
-                            background: 'radial-gradient(circle, rgba(99,102,241,0.8) 0%, rgba(139,92,246,0.6) 50%, rgba(0,0,0,1) 100%)',
+                            gridTemplateColumns: `repeat(${gridSize.cols}, 1fr)`,
+                            gridTemplateRows: `repeat(${gridSize.rows}, 1fr)`,
                         }}
-                        initial={{ scale: 100, opacity: 1 }}
-                        animate={{ scale: 0, opacity: 0 }}
-                        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                        {[...Array(totalBlocks)].map((_, index) => {
+                            const row = Math.floor(index / gridSize.cols);
+                            const col = index % gridSize.cols;
+                            const diagonal = (row + col) / (gridSize.rows + gridSize.cols);
+
+                            const getColor = () => {
+                                if (diagonal < 0.3) return 'bg-indigo-600';
+                                if (diagonal < 0.5) return 'bg-purple-600';
+                                if (diagonal < 0.7) return 'bg-violet-600';
+                                return 'bg-fuchsia-600';
+                            };
+
+                            return (
+                                <motion.div
+                                    key={index}
+                                    className={`${getColor()}`}
+                                    style={{ boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.2)' }}
+                                    initial={{ scale: 1, opacity: 1 }}
+                                    animate={{ scale: 0, opacity: 0 }}
+                                    transition={{
+                                        duration: 0.4,
+                                        delay: getWaveDelay(index),
+                                        ease: [0.34, 1.56, 0.64, 1],
+                                    }}
+                                />
+                            );
+                        })}
+                    </div>
+
+                    {/* Gradient overlay for smooth fade */}
+                    <motion.div
+                        className="absolute inset-0 bg-gradient-to-tl from-indigo-500/20 via-transparent to-purple-500/20 pointer-events-none"
+                        initial={{ opacity: 1 }}
+                        animate={{ opacity: 0 }}
+                        transition={{ duration: 0.6, delay: 0.3 }}
                     />
-                </motion.div>
+                </div>
             )}
 
             {/* Animated Grid Background */}

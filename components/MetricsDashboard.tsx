@@ -302,8 +302,8 @@ const MetricsDashboard: React.FC = () => {
                 </div>
 
                 {/* Site Footer */}
-                <div className="relative mt-16 md:mt-20 pt-12 border-t border-slate-200 dark:border-slate-800">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
+                <div className="mt-16 md:mt-20 pt-12 border-t border-slate-200 dark:border-slate-800">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12 items-center">
                         {/* Left: Copyright & Built With */}
                         <div className="space-y-2 text-center md:text-left">
                             <p className="text-[10px] md:text-xs font-bold tracking-wider text-slate-900 dark:text-white">
@@ -312,6 +312,11 @@ const MetricsDashboard: React.FC = () => {
                             <p className="text-[9px] md:text-[10px] font-mono text-slate-500 leading-relaxed">
                                 Built with Next.js & Framer Motion
                             </p>
+                        </div>
+
+                        {/* Center: Easter Egg Portal Button */}
+                        <div className="flex justify-center">
+                            <PortalButton />
                         </div>
 
                         {/* Right: API Credits */}
@@ -323,11 +328,6 @@ const MetricsDashboard: React.FC = () => {
                                 Powered by GitHub API & Vercel Analytics
                             </p>
                         </div>
-                    </div>
-
-                    {/* Easter Egg Portal Button */}
-                    <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6">
-                        <PortalButton />
                     </div>
                 </div>
 
