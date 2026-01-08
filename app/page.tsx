@@ -2,7 +2,7 @@
 
 import Hero from '@/components/Hero';
 import TechStack from '@/components/TechStack';
-import Projects from '@/components/Projects'; // <--- Panggil Wrapper yang baru dibuat (No. 3)
+import Projects from '@/components/Projects';
 import Experience from '@/components/Experience';
 import FloatingDock from '@/components/FloatingDock';
 import ContactCTA from '@/components/ContactCTA';

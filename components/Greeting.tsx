@@ -1,8 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-// Hapus import motion jika tidak dipakai animasi berat disini, 
-// atau biarkan div biasa biar ringan.
 
 const Greeting: React.FC = () => {
     const [text, setText] = useState('Hello');
@@ -23,14 +21,10 @@ const Greeting: React.FC = () => {
 
     if (!mounted) return <span className="opacity-0">Hello</span>;
 
-    // --- PERBAIKAN DISINI ---
-    // Kita HAPUS semua class 'border', 'bg-', 'shadow', 'rounded'.
-    // Kita sisakan hanya layouting (flex) dan gap saja.
     return (
         <div className="flex items-center gap-2">
             <span className="text-xl">{icon}</span>
             <span className="font-medium">{text}</span>
-            {/* Hapus "I'm [Nama]" dari sini karena sudah ada di Hero.tsx */}
         </div>
     );
 };

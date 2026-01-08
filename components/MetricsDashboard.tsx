@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Github, TrendingUp, Users, Star, GitFork, Code2, Activity, Zap, Eye } from 'lucide-react';
+import PortalButton from './PortalButton';
 
 interface GitHubStats {
     publicRepos: number;
@@ -301,7 +302,7 @@ const MetricsDashboard: React.FC = () => {
                 </div>
 
                 {/* Site Footer */}
-                <div className="mt-16 md:mt-20 pt-12 border-t border-slate-200 dark:border-slate-800">
+                <div className="relative mt-16 md:mt-20 pt-12 border-t border-slate-200 dark:border-slate-800">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
                         {/* Left: Copyright & Built With */}
                         <div className="space-y-2 text-center md:text-left">
@@ -322,6 +323,11 @@ const MetricsDashboard: React.FC = () => {
                                 Powered by GitHub API & Vercel Analytics
                             </p>
                         </div>
+                    </div>
+
+                    {/* Easter Egg Portal Button */}
+                    <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6">
+                        <PortalButton />
                     </div>
                 </div>
 
