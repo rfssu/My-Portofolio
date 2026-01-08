@@ -6,11 +6,11 @@ import { useTheme } from 'next-themes';
 import {
     Home,
     Layers,
-    Briefcase,
-    Mail,
     Sun,
     Moon,
     Github,
+    BarChart3,
+    MessageCircle,
 } from 'lucide-react';
 import { DockIconProps, NavigationLink, SocialLink } from '@/types';
 
@@ -27,12 +27,12 @@ const FloatingDock: React.FC = () => {
     const links: NavigationLink[] = [
         { id: 'hero', icon: <Home className="w-full h-full" />, label: "Home" },
         { id: 'projects', icon: <Layers className="w-full h-full" />, label: "Projects" },
-        { id: 'experience', icon: <Briefcase className="w-full h-full" />, label: "Experience" },
+        { id: 'metrics', icon: <BarChart3 className="w-full h-full" />, label: "Metrics" },
     ];
 
     const socialLinks: SocialLink[] = [
         { url: "https://github.com/rfssu", icon: <Github className="w-full h-full" />, label: "GitHub" },
-        { url: "mailto:rafi.ss.utama@gmail.com", icon: <Mail className="w-full h-full" />, label: "Contact" },
+        { url: "https://wa.me/6282134807621", icon: <MessageCircle className="w-full h-full" />, label: "WhatsApp" },
     ];
 
     const scrollToSection = (id: string) => {

@@ -18,33 +18,20 @@ const ContactCTA: React.FC = () => {
                     </a>
                 </div>
 
-                {/* Social Links & Footer Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 pt-12 border-t border-slate-200 dark:border-slate-800">
-                    {/* Links Column */}
-                    <div className="md:col-span-8 flex flex-wrap gap-x-12 gap-y-4">
-                        <a href="https://github.com/rfssu" target="_blank" className="group flex flex-col">
-                            <span className="text-[9px] text-slate-400 font-mono tracking-widest mb-1">01 / GITHUB</span>
-                            <span className="text-xs font-bold uppercase tracking-widest group-hover:text-indigo-500 transition-colors">Follow ↗</span>
-                        </a>
-                        <a href="https://linkedin.com/in/username" target="_blank" className="group flex flex-col">
-                            <span className="text-[9px] text-slate-400 font-mono tracking-widest mb-1">02 / LINKEDIN</span>
-                            <span className="text-xs font-bold uppercase tracking-widest group-hover:text-indigo-500 transition-colors">Connect ↗</span>
-                        </a>
-                        <a href="https://instagram.com/username" target="_blank" className="group flex flex-col">
-                            <span className="text-[9px] text-slate-400 font-mono tracking-widest mb-1">03 / INSTAGRAM</span>
-                            <span className="text-xs font-bold uppercase tracking-widest group-hover:text-indigo-500 transition-colors">Photos ↗</span>
-                        </a>
-                    </div>
-
-                    {/* Credits Column */}
-                    <div className="md:col-span-4 md:text-right space-y-1.5">
-                        <p className="text-[10px] font-bold tracking-wider text-slate-900 dark:text-white">
-                            © {new Date().getFullYear()} Rafi Saifullah
-                        </p>
-                        <p className="text-[9px] font-mono text-slate-500 leading-relaxed">
-                            Built with Next.js & Framer Motion
-                        </p>
-                    </div>
+                {/* Social Links Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 pt-12 border-t border-slate-200 dark:border-slate-800">
+                    <a href="https://github.com/rfssu" target="_blank" className="group flex flex-col">
+                        <span className="text-[9px] text-slate-400 font-mono tracking-widest mb-1">01 / GITHUB</span>
+                        <span className="text-xs font-bold uppercase tracking-widest group-hover:text-indigo-500 transition-colors">Follow ↗</span>
+                    </a>
+                    <a href="https://linkedin.com/in/username" target="_blank" className="group flex flex-col">
+                        <span className="text-[9px] text-slate-400 font-mono tracking-widest mb-1">02 / LINKEDIN</span>
+                        <span className="text-xs font-bold uppercase tracking-widest group-hover:text-indigo-500 transition-colors">Connect ↗</span>
+                    </a>
+                    <a href="https://instagram.com/username" target="_blank" className="group flex flex-col">
+                        <span className="text-[9px] text-slate-400 font-mono tracking-widest mb-1">03 / INSTAGRAM</span>
+                        <span className="text-xs font-bold uppercase tracking-widest group-hover:text-indigo-500 transition-colors">Photos ↗</span>
+                    </a>
                 </div>
             </div>
         </section>

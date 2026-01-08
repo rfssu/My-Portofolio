@@ -6,6 +6,7 @@ import Projects from '@/components/Projects'; // <--- Panggil Wrapper yang baru 
 import Experience from '@/components/Experience';
 import FloatingDock from '@/components/FloatingDock';
 import ContactCTA from '@/components/ContactCTA';
+import MetricsDashboard from '@/components/MetricsDashboard';
 
 export default function Home() {
   return (
@@ -36,8 +37,10 @@ export default function Home() {
         {/* CTA Section */}
         <ContactCTA />
 
-
       </div>
+
+      {/* Metrics Dashboard */}
+      <MetricsDashboard />
     </main>
   );
 }
