@@ -17,8 +17,8 @@ const Hero: React.FC = () => {
                     className="relative w-full h-[50vh] md:h-[65vh] overflow-hidden mb-12"
                 >
                     <Image
-                        src="/picture-cinematic.png"
-                        alt="Cinematic Portfolio Header"
+                        src="/headpict1.png"
+                        alt="headpict1"
                         fill
                         className="object-cover transition-all duration-1000 ease-in-out"
                         priority
