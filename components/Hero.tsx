@@ -27,7 +27,7 @@ const Hero: React.FC = () => {
     const texts = [
         greeting,
         "RAFI SAIFULLAH SATRIA UTAMA",
-        "I'M FULL-STACK DEVELOPER"
+        "FULL-STACK DEVELOPER"
     ];
 
     useEffect(() => {

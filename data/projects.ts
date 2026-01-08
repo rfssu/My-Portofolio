@@ -5,16 +5,16 @@ export const projects: Project[] = [
         id: 1,
         title: "Khas Jogja Store",
         description: "A digital marketplace empowering local MSMEs in Yogyakarta to sell authentic souvenirs through a centralized platform.",
-        tech: ["Laravel", "TailwindCSS", "DigitalOcean", "AmazonS3"],
+        tech: ["Laravel", "TailwindCSS", "daisyUI", "MySQL", "DigitalOcean", "Midtrans"],
         image: "/project1.jpeg",
         features: [
-            "S3-Compatible Cloud Storage for secure and high-speed asset delivery.",
-            "Real-time Product Search using optimized database indexing.",
-            "Scalable PaaS Infrastructure with automated deployment pipelines.",
-            "Integrated Checkout System designed for local MSME scalability."
+            "Integrated Midtrans Payment Gateway with automated payment status handling via secure Webhooks.",
+            "Architected Cloud-Native Asset Management using DigitalOcean Spaces (S3-Compatible) for decoupled storage.",
+            "Implemented Real-time Product Search with optimized database query indexing for sub-second performance.",
+            "Managed End-to-End Deployment on DigitalOcean, ensuring seamless CI/CD and production-ready environment."
         ],
         links: {
-            demo: "https://khas-jogja-store-r5fzs.ondigitalocean.app/",
+            demo: null,
             repo: null
         }
     },
@@ -25,10 +25,10 @@ export const projects: Project[] = [
         tech: ["Laravel", "MySQL", "JavaScript", "Bootstrap"],
         image: "/project2.jpeg",
         features: [
-            "Atomic Booking Engine to prevent double-booking across multiple branches.",
-            "Hair Artist Academy portal for integrated educational management.",
-            "Real-time Artist Scheduling with interactive calendar views.",
-            "Automated Customer Notifications for booking confirmation."
+            "Dynamic Academy Portal designed for structured educational content management and stylist training.",
+            "Seamless WhatsApp Integration for a direct-to-barber booking flow, optimizing customer conversion rates.",
+            "Integrated Artist Scheduling system to showcase real-time availability and premium haircut services.",
+            "Interactive Business Profile with a mobile-first approach to ensure a premium user experience across all devices."
         ],
         links: {
             demo: "https://simplyhaircut.id/",
@@ -40,7 +40,7 @@ export const projects: Project[] = [
         title: "Modern Personal Portfolio",
         description: "A high-performance cinematic portfolio built with Next.js 15, focusing on editorial design and smooth interaction.",
         tech: ["Next.js", "TypeScript", "TailwindCSS", "Framer"],
-        image: "/project-3.jpeg",
+        image: "/project3.png",
         features: [
             "Next.js 15 Server-Side Rendering (SSR) for optimal performance.",
             "Lighthouse Score 100/100 through meticulous asset optimization.",
@@ -49,7 +49,7 @@ export const projects: Project[] = [
         ],
         links: {
             demo: "#",
-            repo: "https://github.com/username/portfolio"
+            repo: "https://github.com/rfssu/My-Portofolio"
         }
     }
 ];
