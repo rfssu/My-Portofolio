@@ -10,6 +10,16 @@ const ProjectFun1 = () => {
     const [score, setScore] = useState<number>(0);
     const [highScore, setHighScore] = useState<number>(0);
     const gameLoopRef = useRef<number | undefined>(undefined);
+    const keysRef = useRef({ left: false, right: false });
+
+    // Mobile control handlers
+    const handleMobileLeft = (pressed: boolean) => {
+        keysRef.current.left = pressed;
+    };
+
+    const handleMobileRight = (pressed: boolean) => {
+        keysRef.current.right = pressed;
+    };
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -22,17 +32,16 @@ const ProjectFun1 = () => {
         let ship = { x: canvas.width / 2, y: canvas.height - 80, width: 40, height: 40, speed: 5 };
         let asteroids: Array<{ x: number; y: number; width: number; height: number; speed: number }> = [];
         let currentScore = 0;
-        let keys = { left: false, right: false };
 
-        // Controls
+        // Controls - use keysRef for both keyboard and mobile
         const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.key === 'ArrowLeft') keys.left = true;
-            if (e.key === 'ArrowRight') keys.right = true;
+            if (e.key === 'ArrowLeft') keysRef.current.left = true;
+            if (e.key === 'ArrowRight') keysRef.current.right = true;
         };
 
         const handleKeyUp = (e: KeyboardEvent) => {
-            if (e.key === 'ArrowLeft') keys.left = false;
-            if (e.key === 'ArrowRight') keys.right = false;
+            if (e.key === 'ArrowLeft') keysRef.current.left = false;
+            if (e.key === 'ArrowRight') keysRef.current.right = false;
         };
 
         document.addEventListener('keydown', handleKeyDown);
@@ -74,9 +83,9 @@ const ProjectFun1 = () => {
                 ctx.stroke();
             }
 
-            // Move ship
-            if (keys.left && ship.x > 0) ship.x -= ship.speed;
-            if (keys.right && ship.x < canvas.width - ship.width) ship.x += ship.speed;
+            // Move ship - using keysRef
+            if (keysRef.current.left && ship.x > 0) ship.x -= ship.speed;
+            if (keysRef.current.right && ship.x < canvas.width - ship.width) ship.x += ship.speed;
 
             // Draw ship (triangle)
             ctx.fillStyle = '#6366f1';
@@ -186,7 +195,7 @@ const ProjectFun1 = () => {
                     {gameState === 'idle' && (
                         <div className="absolute inset-0 bg-black/80 flex flex-col items-center justify-center">
                             <h3 className="text-3xl font-black mb-4 text-cyan-400">ASTEROID DODGER</h3>
-                            <p className="text-slate-300 mb-2">Use Arrow Keys to move</p>
+                            <p className="text-slate-300 mb-1">Use Arrow Keys or Touch Buttons</p>
                             <p className="text-slate-400 text-sm mb-6">Dodge asteroids and survive!</p>
                             <button
                                 onClick={startGame}
@@ -216,6 +225,32 @@ const ProjectFun1 = () => {
                         </div>
                     )}
                 </div>
+
+                {/* Mobile Control Buttons */}
+                {gameState === 'playing' && (
+                    <div className="mt-4 flex justify-center gap-4 md:hidden">
+                        <button
+                            onTouchStart={() => handleMobileLeft(true)}
+                            onTouchEnd={() => handleMobileLeft(false)}
+                            onMouseDown={() => handleMobileLeft(true)}
+                            onMouseUp={() => handleMobileLeft(false)}
+                            onMouseLeave={() => handleMobileLeft(false)}
+                            className="px-8 py-6 bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 text-white font-bold text-xl rounded-lg touch-none select-none transition-colors"
+                        >
+                            ← LEFT
+                        </button>
+                        <button
+                            onTouchStart={() => handleMobileRight(true)}
+                            onTouchEnd={() => handleMobileRight(false)}
+                            onMouseDown={() => handleMobileRight(true)}
+                            onMouseUp={() => handleMobileRight(false)}
+                            onMouseLeave={() => handleMobileRight(false)}
+                            className="px-8 py-6 bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 text-white font-bold text-xl rounded-lg touch-none select-none transition-colors"
+                        >
+                            RIGHT →
+                        </button>
+                    </div>
+                )}
 
                 {/* Game Info */}
                 <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3">
