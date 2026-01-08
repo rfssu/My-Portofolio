@@ -1,10 +1,50 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const Hero: React.FC = () => {
+    const texts = [
+        "RAFI SAIFULLAH SATRIA UTAMA",
+        "I'M FULL-STACK DEVELOPER"
+    ];
+
+    const [currentTextIndex, setCurrentTextIndex] = useState(0);
+    const [displayedText, setDisplayedText] = useState("");
+    const [isDeleting, setIsDeleting] = useState(false);
+    const [typingSpeed, setTypingSpeed] = useState(100);
+
+    useEffect(() => {
+        const currentFullText = texts[currentTextIndex];
+
+        const handleTyping = () => {
+            if (!isDeleting) {
+                // Typing forward
+                if (displayedText.length < currentFullText.length) {
+                    setDisplayedText(currentFullText.substring(0, displayedText.length + 1));
+                    setTypingSpeed(100);
+                } else {
+                    // Pause at end before deleting
+                    setTimeout(() => setIsDeleting(true), 2000);
+                }
+            } else {
+                // Deleting backward
+                if (displayedText.length > 0) {
+                    setDisplayedText(currentFullText.substring(0, displayedText.length - 1));
+                    setTypingSpeed(50);
+                } else {
+                    // Move to next text
+                    setIsDeleting(false);
+                    setCurrentTextIndex((prev) => (prev + 1) % texts.length);
+                }
+            }
+        };
+
+        const timer = setTimeout(handleTyping, typingSpeed);
+        return () => clearTimeout(timer);
+    }, [displayedText, isDeleting, currentTextIndex, typingSpeed]);
+
     return (
         <section className="min-h-screen flex flex-col justify-end pt-32 pb-16 bg-white dark:bg-[#0B1120]">
             <div className="max-w-7xl w-full mx-auto px-6 md:px-12 flex flex-col">
@@ -38,8 +78,9 @@ const Hero: React.FC = () => {
                     <div className="space-y-5 md:space-y-7">
                         {/* Name */}
                         <div>
-                            <h1 className="text-xl md:text-3xl font-black text-slate-900 dark:text-white leading-tight tracking-tight uppercase">
-                                RAFI SAIFULLAH SATRIA UTAMA
+                            <h1 className="text-xl md:text-3xl font-black text-slate-900 dark:text-white leading-tight tracking-tight uppercase min-h-[2.5rem] md:min-h-[3rem]">
+                                {displayedText}
+                                <span className="animate-pulse ml-1 text-indigo-500">|</span>
                             </h1>
                         </div>
 
