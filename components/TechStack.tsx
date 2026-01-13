@@ -9,9 +9,13 @@ const coreStack: TechStackItem[] = [
     { name: "REACT", slug: "react" },
     { name: "NEXT.JS", slug: "nextdotjs" },
     { name: "TYPESCRIPT", slug: "typescript" },
+    { name: "GO", slug: "go" },
+    { name: "REDIS", slug: "redis" },
     { name: "TAILWIND CSS", slug: "tailwindcss" },
     { name: "MYSQL", slug: "mysql" },
-    { name: "POSTGRESQL", slug: "postgresql" }
+    { name: "POSTGRESQL", slug: "postgresql" },
+    { name: "SQLITE", slug: "sqlite" },
+
 ];
 
 const supportStack: TechStackItem[] = [

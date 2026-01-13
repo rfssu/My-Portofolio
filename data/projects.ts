@@ -66,9 +66,28 @@ export const projects: Project[] = [
             "Interactive High-Fidelity Prototyping to simulate the complete user booking experience and field management flow."
         ],
         links: {
-            demo: "#",
+            demo: null,
             repo: null
         }
+    },
+    {
+        id: 5,
+        title: "PANTAUPOHON: Enterprise Agri-Tech Intelligence",
+        description: "A high-performance digital logbook for biological assets built on the 'Tani-Stack'—integrating binary-paged storage with custom semantic query logic.",
+        tech: ["Go", "PostgreSQL", "Redis", "TailwindCSS", "JokoUI", "SawitDB"],
+        image: "/project5.png",
+        features: [
+            "Architected on Prabogo Go Framework using internal scaffolding for enterprise-grade scalability.",
+            "Implemented AQL (Agricultural Query Language) to bridge the semantic gap between field operations and binary storage.",
+            "Dual-layer acceleration using Gib.Run (Redis) to ensure near-instant data downstreaming for real-time monitoring.",
+            "Engineered with SawitDB's WowoEngine, utilizing 4KB fixed-size binary pages for optimized memory footprint.",
+            "Modern 'Sat-set' UI development using Tailwind CSS v4 and the JokoUI component library.",
+        ],
+        links: {
+            demo: null,
+            repo: "https://github.com/rfssu/Tree-Logbook.git"
+        }
     }
+
 
 ];
