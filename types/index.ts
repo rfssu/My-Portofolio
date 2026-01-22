@@ -51,3 +51,33 @@ export interface TechStackItem {
     name: string;
     slug: string;
 }
+
+/**
+ * GitHub Statistics Structure
+ */
+export interface GitHubStats {
+    publicRepos: number;
+    followers: number;
+    following: number;
+    totalStars: number;
+    totalForks: number;
+}
+
+/**
+ * Contribution Statistics Structure
+ */
+export interface ContributionStats {
+    totalContributions: number;
+    currentStreak: number;
+    longestStreak: number;
+    avgPerDay: number;
+}
+
+/**
+ * Contribution Day Structure
+ */
+export interface ContributionDay {
+    date: string;
+    count: number;
+    level: number;
+}

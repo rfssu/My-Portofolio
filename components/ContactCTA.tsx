@@ -1,7 +1,4 @@
-'use client';
-
 import React from 'react';
-import { motion } from 'framer-motion';
 
 const ContactCTA: React.FC = () => {
     return (
@@ -20,15 +17,15 @@ const ContactCTA: React.FC = () => {
 
                 {/* Social Links Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 pt-12 border-t border-slate-200 dark:border-slate-800">
-                    <a href="https://github.com/rfssu" target="_blank" className="group flex flex-col">
+                    <a href="https://github.com/rfssu" target="_blank" rel="noopener noreferrer" className="group flex flex-col">
                         <span className="text-[9px] text-slate-400 font-mono tracking-widest mb-1">01 / GITHUB</span>
                         <span className="text-xs font-bold uppercase tracking-widest group-hover:text-indigo-500 transition-colors">Follow ↗</span>
                     </a>
-                    <a href="https://linkedin.com/in/username" target="_blank" className="group flex flex-col">
+                    <a href="https://linkedin.com/in/username" target="_blank" rel="noopener noreferrer" className="group flex flex-col">
                         <span className="text-[9px] text-slate-400 font-mono tracking-widest mb-1">02 / LINKEDIN</span>
                         <span className="text-xs font-bold uppercase tracking-widest group-hover:text-indigo-500 transition-colors">Connect ↗</span>
                     </a>
-                    <a href="https://instagram.com/username" target="_blank" className="group flex flex-col">
+                    <a href="https://instagram.com/username" target="_blank" rel="noopener noreferrer" className="group flex flex-col">
                         <span className="text-[9px] text-slate-400 font-mono tracking-widest mb-1">03 / INSTAGRAM</span>
                         <span className="text-xs font-bold uppercase tracking-widest group-hover:text-indigo-500 transition-colors">Photos ↗</span>
                     </a>

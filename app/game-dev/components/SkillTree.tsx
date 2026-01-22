@@ -2,80 +2,38 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { Code2, Zap, Cpu, Gamepad2, Paintbrush, Music } from 'lucide-react';
+import { Cpu } from 'lucide-react';
+import { skills, SkillNode } from '@/data/skills';
 
-interface SkillNode {
-    name: string;
-    level: 'mastered' | 'learning' | 'locked';
-    icon: any;
-    description: string;
-    projects?: string[];
-}
+/**
+ * Get border/bg color based on skill level
+ */
+const getNodeColor = (level: SkillNode['level']): string => {
+    switch (level) {
+        case 'mastered': return 'border-green-500/50 bg-green-500/10 hover:border-green-500';
+        case 'learning': return 'border-yellow-500/50 bg-yellow-500/10 hover:border-yellow-500';
+        case 'locked': return 'border-slate-700/50 bg-slate-800/10 opacity-40';
+        default: return 'border-slate-700/50';
+    }
+};
 
+/**
+ * Get glow effect based on skill level
+ */
+const getGlowEffect = (level: SkillNode['level']): string => {
+    switch (level) {
+        case 'mastered': return 'shadow-[0_0_20px_rgba(34,197,94,0.3)]';
+        case 'learning': return 'shadow-[0_0_20px_rgba(234,179,8,0.2)] animate-pulse';
+        default: return '';
+    }
+};
+
+/**
+ * Interactive skill tree component for game dev page
+ * Follows OCP: Add new skills via data/skills.ts
+ */
 const SkillTree = () => {
     const [selectedNode, setSelectedNode] = useState<string | null>(null);
-
-    const skills: Record<string, SkillNode> = {
-        'Godot': {
-            name: 'Godot Engine',
-            level: 'learning',
-            icon: Zap,
-            description: 'Currently learning open-source game engine & GDScript',
-            projects: ['Project Alpha (In Progress)']
-        },
-        'Unity': {
-            name: 'Unity',
-            level: 'locked',
-            icon: Gamepad2,
-            description: '3D/2D game engine - Planning to learn after Godot',
-            projects: []
-        },
-        'C#': {
-            name: 'C# Scripting',
-            level: 'locked',
-            icon: Code2,
-            description: 'Object-oriented programming - Future learning goal',
-            projects: []
-        },
-        'Game Design': {
-            name: 'Game Design',
-            level: 'locked',
-            icon: Cpu,
-            description: 'Level design, mechanics, player experience - Exploring fundamentals',
-            projects: []
-        },
-        '2D Art': {
-            name: '2D Art',
-            level: 'locked',
-            icon: Paintbrush,
-            description: 'Sprite creation, pixel art - Future skill development',
-            projects: []
-        },
-        'Audio': {
-            name: 'Audio Design',
-            level: 'locked',
-            icon: Music,
-            description: 'Sound effects, music integration - Future learning',
-            projects: []
-        },
-    };
-
-    const getNodeColor = (level: string) => {
-        switch (level) {
-            case 'mastered': return 'border-green-500/50 bg-green-500/10 hover:border-green-500';
-            case 'learning': return 'border-yellow-500/50 bg-yellow-500/10 hover:border-yellow-500';
-            case 'locked': return 'border-slate-700/50 bg-slate-800/10 opacity-40';
-            default: return 'border-slate-700/50';
-        }
-    };
-
-    const getGlowEffect = (level: string) => {
-        switch (level) {
-            case 'mastered': return 'shadow-[0_0_20px_rgba(34,197,94,0.3)]';
-            case 'learning': return 'shadow-[0_0_20px_rgba(234,179,8,0.2)] animate-pulse';
-            default: return '';
-        }
-    };
 
     return (
         <motion.div

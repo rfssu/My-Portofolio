@@ -6,25 +6,11 @@ import { projects } from '@/data/projects';
 import { X, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import { Project } from '@/types';
+import { getLogoUrlByName } from '@/lib/logo-utils';
 
 const Projects: React.FC = () => {
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-    const getLogoUrl = (name: string): string => {
-        // Map tech names to correct Simple Icons slugs
-        const slugMap: { [key: string]: string } = {
-            'Next.js': 'nextdotjs',
-            'TailwindCSS': 'tailwindcss',
-            'Tailwind CSS': 'tailwindcss',
-            'AmazonS3': 'amazons3',
-            'S3 Storage': 'amazons3',
-            'DigitalOcean': 'digitalocean',
-            'Framer Motion': 'framer',
-            'Framer': 'framer'
-        };
-
-        return `https://cdn.simpleicons.org/${slugMap[name] || name.toLowerCase()}`;
-    };
 
     return (
         <section id="projects" className="py-12 md:py-24 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0B1120] relative text-left">
@@ -115,12 +101,12 @@ const Projects: React.FC = () => {
                                         </div>
                                         <div className="flex gap-3 md:gap-6 text-[9px] md:text-[11px] font-black uppercase tracking-widest shrink-0">
                                             {selectedProject.links.demo && (
-                                                <a href={selectedProject.links.demo} target="_blank" className="hover:text-indigo-500 underline underline-offset-2 md:underline-offset-4 decoration-indigo-500/30 hover:decoration-indigo-500 transition-all">
+                                                <a href={selectedProject.links.demo} target="_blank" rel="noopener noreferrer" className="hover:text-indigo-500 underline underline-offset-2 md:underline-offset-4 decoration-indigo-500/30 hover:decoration-indigo-500 transition-all">
                                                     Live Demo ↗
                                                 </a>
                                             )}
                                             {selectedProject.links.repo && (
-                                                <a href={selectedProject.links.repo} target="_blank" className="hover:text-indigo-500 underline underline-offset-2 md:underline-offset-4 decoration-indigo-500/30 hover:decoration-indigo-500 transition-all">
+                                                <a href={selectedProject.links.repo} target="_blank" rel="noopener noreferrer" className="hover:text-indigo-500 underline underline-offset-2 md:underline-offset-4 decoration-indigo-500/30 hover:decoration-indigo-500 transition-all">
                                                     Github ↗
                                                 </a>
                                             )}
@@ -156,7 +142,7 @@ const Projects: React.FC = () => {
                                                     {selectedProject.tech.map((t: string) => (
                                                         <div key={t} className="flex items-center gap-1.5 md:gap-2 group/icon">
                                                             <img
-                                                                src={getLogoUrl(t)}
+                                                                src={getLogoUrlByName(t)}
                                                                 alt={t}
                                                                 className="w-3 h-3 md:w-3.5 md:h-3.5 opacity-70 group-hover/icon:opacity-100 transition-all"
                                                             />

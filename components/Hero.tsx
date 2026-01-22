@@ -1,64 +1,27 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useTypingAnimation } from '@/hooks/useTypingAnimation';
+import { useGreeting } from '@/hooks/useGreeting';
 
 const Hero: React.FC = () => {
-    const [greeting, setGreeting] = useState('Hello');
-    const [currentTextIndex, setCurrentTextIndex] = useState(0);
-    const [displayedText, setDisplayedText] = useState("");
-    const [isDeleting, setIsDeleting] = useState(false);
-    const [typingSpeed, setTypingSpeed] = useState(100);
-
-    // Get time-based greeting
-    useEffect(() => {
-        const hour = new Date().getHours();
-        if (hour >= 5 && hour < 12) {
-            setGreeting('Good Morning');
-        } else if (hour >= 12 && hour < 18) {
-            setGreeting('Good Afternoon');
-        } else {
-            setGreeting('Good Evening');
-        }
-    }, []);
+    const greeting = useGreeting();
 
     // Texts for typing animation (includes dynamic greeting)
-    const texts = [
+    const texts = React.useMemo(() => [
         greeting,
         "RAFI SAIFULLAH SATRIA UTAMA",
         "FULL-STACK DEVELOPER"
-    ];
+    ], [greeting]);
 
-    useEffect(() => {
-        const currentFullText = texts[currentTextIndex];
-
-        const handleTyping = () => {
-            if (!isDeleting) {
-                // Typing forward
-                if (displayedText.length < currentFullText.length) {
-                    setDisplayedText(currentFullText.substring(0, displayedText.length + 1));
-                    setTypingSpeed(100);
-                } else {
-                    // Pause at end before deleting
-                    setTimeout(() => setIsDeleting(true), 2000);
-                }
-            } else {
-                // Deleting backward
-                if (displayedText.length > 0) {
-                    setDisplayedText(currentFullText.substring(0, displayedText.length - 1));
-                    setTypingSpeed(50);
-                } else {
-                    // Move to next text
-                    setIsDeleting(false);
-                    setCurrentTextIndex((prev) => (prev + 1) % texts.length);
-                }
-            }
-        };
-
-        const timer = setTimeout(handleTyping, typingSpeed);
-        return () => clearTimeout(timer);
-    }, [displayedText, isDeleting, currentTextIndex, typingSpeed, greeting]);
+    const { displayedText } = useTypingAnimation({
+        texts,
+        typingSpeed: 100,
+        deletingSpeed: 50,
+        pauseDuration: 2000
+    });
 
     return (
         <section className="min-h-screen flex flex-col justify-end pt-32 pb-16 bg-white dark:bg-[#0B1120]">

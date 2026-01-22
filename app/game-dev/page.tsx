@@ -1,76 +1,57 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowLeft, Trophy, Zap, Users, Star } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import ProjectFun1 from './components/ProjectFun1';
 import SkillTree from './components/SkillTree';
 import StreamWidget from './components/StreamWidget';
+import { useTypingAnimation } from '@/hooks/useTypingAnimation';
+import { useGreeting } from '@/hooks/useGreeting';
+import { gameStats } from '@/data/gameStats';
 
 export default function GameDevPage() {
     const router = useRouter();
     const [isReturning, setIsReturning] = useState(false);
+    const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+    const greeting = useGreeting();
 
-    // Typing animation states
-    const [greeting, setGreeting] = useState('Hello');
-    const [currentTextIndex, setCurrentTextIndex] = useState(0);
-    const [displayedText, setDisplayedText] = useState("");
-    const [isDeleting, setIsDeleting] = useState(false);
-    const [typingSpeed, setTypingSpeed] = useState(100);
-
-    // Get time-based greeting
+    // Set dimensions on mount to avoid hydration mismatch
     useEffect(() => {
-        const hour = new Date().getHours();
-        if (hour >= 5 && hour < 12) {
-            setGreeting('Good Morning');
-        } else if (hour >= 12 && hour < 18) {
-            setGreeting('Good Afternoon');
-        } else {
-            setGreeting('Good Evening');
-        }
+        setDimensions({
+            width: window.innerWidth,
+            height: window.innerHeight
+        });
     }, []);
 
     // Texts for typing animation
-    const texts = [
+    const texts = useMemo(() => [
         greeting,
         "WELCOME TO MY GAME UNIVERSE",
         "I'M MONARCH // XTRADA404"
-    ];
+    ], [greeting]);
 
-    useEffect(() => {
-        const currentFullText = texts[currentTextIndex];
+    const { displayedText } = useTypingAnimation({
+        texts,
+        typingSpeed: 100,
+        deletingSpeed: 50,
+        pauseDuration: 2000
+    });
 
-        const handleTyping = () => {
-            if (!isDeleting) {
-                if (displayedText.length < currentFullText.length) {
-                    setDisplayedText(currentFullText.substring(0, displayedText.length + 1));
-                    setTypingSpeed(100);
-                } else {
-                    setTimeout(() => setIsDeleting(true), 2000);
-                }
-            } else {
-                if (displayedText.length > 0) {
-                    setDisplayedText(currentFullText.substring(0, displayedText.length - 1));
-                    setTypingSpeed(50);
-                } else {
-                    setIsDeleting(false);
-                    setCurrentTextIndex((prev) => (prev + 1) % texts.length);
-                }
-            }
+    // Optimized grid - memoized to prevent re-calculation on every render (especially during typing)
+    const gridSize = useMemo(() => {
+        if (dimensions.width === 0) return { cols: 12, rows: 8 }; // Default safe value
+        return {
+            cols: Math.ceil(dimensions.width / 120),
+            rows: Math.ceil(dimensions.height / 120)
         };
-
-        const timer = setTimeout(handleTyping, typingSpeed);
-        return () => clearTimeout(timer);
-    }, [displayedText, isDeleting, currentTextIndex, typingSpeed, greeting]);
-
-
-    // Optimized grid - same as enter animation for consistency
-    const gridSize = typeof window !== 'undefined'
-        ? { cols: Math.ceil(window.innerWidth / 120), rows: Math.ceil(window.innerHeight / 120) }
-        : { cols: 12, rows: 8 };
+    }, [dimensions]);
 
     const totalBlocks = gridSize.cols * gridSize.rows;
+
+    // Memoize the grid blocks array to avoid regenerating it on every render
+    const gridBlocks = useMemo(() => [...Array(totalBlocks)], [totalBlocks]);
 
     const handleReturn = () => {
         setIsReturning(true);
@@ -87,13 +68,6 @@ export default function GameDevPage() {
         return diagonalDistance * 0.03;
     };
 
-    const gameStats = [
-        { label: 'Learning Journey', value: 'Started', icon: Trophy, color: 'text-yellow-400' },
-        { label: 'Hours in Godot', value: '20+', icon: Zap, color: 'text-purple-400' },
-        { label: 'Projects in Progress', value: '1', icon: Users, color: 'text-green-400' },
-        { label: 'Tutorials Completed', value: '10+', icon: Star, color: 'text-cyan-400' },
-    ];
-
     return (
         <div className="min-h-screen bg-[#0a0a0a] text-white overflow-hidden relative">
             {/* Return Block Reveal Animation */}
@@ -106,7 +80,7 @@ export default function GameDevPage() {
                             gridTemplateRows: `repeat(${gridSize.rows}, 1fr)`,
                         }}
                     >
-                        {[...Array(totalBlocks)].map((_, index) => {
+                        {gridBlocks.map((_, index) => {
                             const row = Math.floor(index / gridSize.cols);
                             const col = index % gridSize.cols;
                             const diagonal = (row + col) / (gridSize.rows + gridSize.cols);
@@ -246,3 +220,5 @@ export default function GameDevPage() {
         </div>
     );
 }
+
+

@@ -3,19 +3,34 @@
 import { motion } from 'framer-motion';
 import { Gamepad2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { useState, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+
+/** Default grid size for SSR */
+const DEFAULT_GRID = { cols: 12, rows: 8 };
+/** Block size in pixels for grid calculation */
+const BLOCK_SIZE = 120;
 
 const PortalButton = () => {
     const router = useRouter();
     const [isRevealing, setIsRevealing] = useState(false);
+    const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
-    // Optimized grid - larger blocks for better performance
-    const gridSize = useMemo(() => {
-        if (typeof window === 'undefined') return { cols: 12, rows: 8 };
-        const cols = Math.ceil(window.innerWidth / 120); // Larger blocks (120px)
-        const rows = Math.ceil(window.innerHeight / 120);
-        return { cols, rows };
+    // Safe window access in useEffect to prevent hydration mismatch
+    useEffect(() => {
+        setDimensions({
+            width: window.innerWidth,
+            height: window.innerHeight
+        });
     }, []);
+
+    // Calculate grid size based on dimensions
+    const gridSize = useMemo(() => {
+        if (dimensions.width === 0) return DEFAULT_GRID;
+        return {
+            cols: Math.ceil(dimensions.width / BLOCK_SIZE),
+            rows: Math.ceil(dimensions.height / BLOCK_SIZE)
+        };
+    }, [dimensions]);
 
     const totalBlocks = gridSize.cols * gridSize.rows;
 
