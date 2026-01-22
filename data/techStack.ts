@@ -1,31 +1,35 @@
 import { TechStackItem } from '@/types';
 
 /**
- * Core technologies - primary stack
+ * Core technologies - Primary stack (what you're best at)
+ * Frontend + Backend + Database
  */
 export const coreStack: TechStackItem[] = [
-    { name: "LARAVEL", slug: "laravel" },
+    // Frontend
     { name: "REACT", slug: "react" },
     { name: "NEXT.JS", slug: "nextdotjs" },
     { name: "TYPESCRIPT", slug: "typescript" },
-    { name: "GO", slug: "go" },
-    { name: "REDIS", slug: "redis" },
     { name: "TAILWIND CSS", slug: "tailwindcss" },
-    { name: "MYSQL", slug: "mysql" },
+    // Backend
+    { name: "LARAVEL", slug: "laravel" },
+    { name: "GO", slug: "go" },
+    // Database
     { name: "POSTGRESQL", slug: "postgresql" },
-    { name: "SQLITE", slug: "sqlite" },
+    { name: "REDIS", slug: "redis" },
+    { name: "MYSQL", slug: "mysql" }
 ];
 
 /**
- * Supporting technologies - secondary stack
+ * Supporting technologies - DevOps & Tools
  */
 export const supportStack: TechStackItem[] = [
-    { name: "SPRING BOOT", slug: "springboot" },
-    { name: ".NET", slug: "dotnet" },
-    { name: "ANDROID", slug: "android" },
-    { name: "FLUTTER", slug: "flutter" },
-    { name: "FIGMA", slug: "figma" },
+    { name: "DOCKER", slug: "docker" },
+    { name: "VERCEL", slug: "vercel" },
+    { name: "DIGITALOCEAN", slug: "digitalocean" },
     { name: "GIT", slug: "git" },
-    { name: "POSTMAN", slug: "postman" },
-    { name: "LINUX", slug: "linux" }
+    { name: "PYTHON", slug: "python" },
+    { name: "SPRING BOOT", slug: "springboot" },
+    { name: "WORDPRESS", slug: "wordpress" },
+    { name: "FIGMA", slug: "figma" },
+    { name: "LINUX", slug: "linux" },
 ];

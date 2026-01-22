@@ -8,6 +8,7 @@ import { TechStackItem } from '@/types';
 
 /**
  * Animated tech item component for the ticker
+ * Performance: Uses loading="lazy" for images
  */
 interface TechItemProps {
     tech: TechStackItem;
@@ -20,9 +21,14 @@ const TechItem: React.FC<TechItemProps> = ({ tech, size }) => {
     return (
         <div className="flex items-center gap-16 group">
             <div className={`flex items-center ${isLarge ? 'gap-4' : 'gap-3'}`}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                     src={getLogoUrl(tech.slug)}
-                    alt={tech.name}
+                    alt={`${tech.name} logo`}
+                    width={isLarge ? 20 : 12}
+                    height={isLarge ? 20 : 12}
+                    loading="lazy"
+                    decoding="async"
                     className={`${isLarge ? 'w-5 h-5' : 'w-3 h-3'} grayscale opacity-30 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500`}
                 />
                 <span className={`${isLarge ? 'font-black italic' : 'font-medium'} hover:text-slate-900 dark:hover:text-white transition-colors cursor-default`}>
@@ -37,6 +43,7 @@ const TechItem: React.FC<TechItemProps> = ({ tech, size }) => {
 /**
  * Tech stack showcase with animated ticker
  * Follows OCP: Add new technologies via data file, not code changes
+ * Performance: CSS-based animation, lazy loaded images
  */
 const TechStack: React.FC = () => {
     return (
@@ -60,7 +67,7 @@ const TechStack: React.FC = () => {
                         className="flex gap-16 whitespace-nowrap font-mono text-sm md:text-lg uppercase tracking-[0.3em] text-slate-400 dark:text-slate-600"
                     >
                         {[...coreStack, ...coreStack].map((tech, index) => (
-                            <TechItem key={index} tech={tech} size="large" />
+                            <TechItem key={`core-${tech.slug}-${index}`} tech={tech} size="large" />
                         ))}
                     </motion.div>
                 </div>
@@ -73,7 +80,7 @@ const TechStack: React.FC = () => {
                         className="flex gap-16 whitespace-nowrap font-mono text-[10px] md:text-xs uppercase tracking-[0.4em] text-slate-400/60 dark:text-slate-700"
                     >
                         {[...supportStack, ...supportStack].map((tech, index) => (
-                            <TechItem key={index} tech={tech} size="small" />
+                            <TechItem key={`support-${tech.slug}-${index}`} tech={tech} size="small" />
                         ))}
                     </motion.div>
                 </div>

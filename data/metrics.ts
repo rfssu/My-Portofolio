@@ -1,4 +1,4 @@
-import { Eye, Zap, Code2, Activity, TrendingUp, Star, LucideIcon } from 'lucide-react';
+import { Activity, Code2, Gauge, LucideIcon } from 'lucide-react';
 
 export interface MetricItem {
     label: string;
@@ -9,19 +9,38 @@ export interface MetricItem {
 }
 
 /**
- * Portfolio performance metrics displayed in MetricsDashboard
+ * Calculate years of experience from start year
  */
-export const portfolioMetrics: MetricItem[] = [
-    { label: 'Portfolio Visitors', value: '2.5K+', icon: Eye, trend: '+24% this month', color: 'text-blue-500' },
-    { label: 'Performance Score', value: '98/100', icon: Zap, trend: 'Lighthouse', color: 'text-green-500' },
-    { label: 'Active Projects', value: '12+', icon: Code2, trend: 'Production ready', color: 'text-indigo-500' },
-];
+const START_YEAR = 2022;
+const calculateYearsExperience = (): string => {
+    const currentYear = new Date().getFullYear();
+    const years = currentYear - START_YEAR;
+    return `${years}+`;
+};
 
 /**
- * Professional impact metrics displayed in MetricsDashboard
+ * Quick stats - auto-calculated where possible
  */
-export const professionalMetrics: MetricItem[] = [
-    { label: 'Years Experience', value: '3+', icon: Activity, trend: 'Full-stack dev', color: 'text-purple-500' },
-    { label: 'Tech Stack', value: '15+', icon: TrendingUp, trend: 'Technologies', color: 'text-orange-500' },
-    { label: 'Certifications', value: '2', icon: Star, trend: 'BNSP & Certiport', color: 'text-yellow-500' },
+export const quickStats: MetricItem[] = [
+    {
+        label: 'Years Experience',
+        value: calculateYearsExperience(),
+        icon: Activity,
+        trend: 'Full-stack',
+        color: 'text-purple-500'
+    },
+    {
+        label: 'Projects Delivered',
+        value: '5',
+        icon: Code2,
+        trend: 'Production',
+        color: 'text-indigo-500'
+    },
+    {
+        label: 'Lighthouse Score',
+        value: '100',
+        icon: Gauge,
+        trend: 'Performance',
+        color: 'text-green-500'
+    },
 ];

@@ -16,8 +16,50 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio - Full-Stack Developer",
-  description: "Portfolio profesional menampilkan proyek e-commerce, data analytics, dan web development.",
+  title: {
+    default: "Rafi Utama | Full-Stack Developer",
+    template: "%s | Rafi Utama"
+  },
+  description: "Full-stack developer specializing in Next.js and Laravel. Building scalable web applications with modern technologies.",
+  keywords: ["full-stack developer", "next.js", "laravel", "typescript", "react", "indonesia", "web developer"],
+  authors: [{ name: "Rafi Utama" }],
+  creator: "Rafi Utama",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://rafiutama.com",
+    siteName: "Rafi Utama Portfolio",
+    title: "Rafi Utama | Full-Stack Developer",
+    description: "Full-stack developer specializing in Next.js and Laravel. Building scalable web applications.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Rafi Utama - Full-Stack Developer"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rafi Utama | Full-Stack Developer",
+    description: "Full-stack developer specializing in Next.js and Laravel.",
+    images: ["/og-image.png"]
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "your-google-verification-code",
+  },
 };
 
 export default function RootLayout({
@@ -27,6 +69,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Preconnect to critical third-party origins */}
+        <link rel="preconnect" href="https://cdn.simpleicons.org" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://api.github.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://github-contributions-api.jogruber.de" crossOrigin="anonymous" />
+
+        {/* DNS prefetch for non-critical resources */}
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>
           {children}

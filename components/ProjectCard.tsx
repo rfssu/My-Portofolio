@@ -3,14 +3,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { Project } from '@/types';
 
-interface ProjectProps {
-    project: any;
+interface ProjectCardProps {
+    project: Project;
     index: number;
-    onOpen: (project: any) => void;
+    onOpen: (project: Project) => void;
 }
 
-const ProjectCard: React.FC<ProjectProps> = ({ project, index, onOpen }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onOpen }) => {
     return (
         <motion.div
             initial={{ opacity: 0, y: 10 }}

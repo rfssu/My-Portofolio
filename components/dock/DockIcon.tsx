@@ -28,14 +28,19 @@ const DockIcon: React.FC<DockIconProps> = ({ mouseX, children, label, onClick })
     return (
         <motion.div
             ref={ref}
-            style={{ width, height: width, minWidth: 44, minHeight: 44 }}
+            style={{ width, height: width, minWidth: 40, minHeight: 40 }}
             onClick={onClick}
-            className="group relative flex items-center justify-center cursor-pointer bg-white/5 dark:bg-black/5 hover:bg-white/10 dark:hover:bg-black/10 text-white dark:text-black transition-colors duration-300 will-change-transform"
+            className="group relative flex items-center justify-center cursor-pointer rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors duration-300 will-change-transform"
         >
-            <div className="p-2 w-full h-full flex items-center justify-center">
+            <div className="p-2.5 w-full h-full flex items-center justify-center">
                 {children}
             </div>
-            <span className="pointer-events-none absolute -top-10 hidden bg-black dark:bg-white px-2 py-1 text-xs text-white dark:text-black opacity-0 transition-opacity duration-300 group-hover:block group-hover:opacity-100 whitespace-nowrap font-mono uppercase tracking-wider">
+            {/* Desktop tooltip - shows on right */}
+            <span className="pointer-events-none absolute left-full ml-3 hidden lg:group-hover:block bg-slate-900 dark:bg-white px-2 py-1 text-xs text-white dark:text-slate-900 whitespace-nowrap font-mono uppercase tracking-wider rounded">
+                {label}
+            </span>
+            {/* Mobile tooltip - shows above */}
+            <span className="pointer-events-none absolute -top-10 block lg:hidden bg-slate-900 dark:bg-white px-2 py-1 text-xs text-white dark:text-slate-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap font-mono uppercase tracking-wider rounded">
                 {label}
             </span>
         </motion.div>

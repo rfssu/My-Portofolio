@@ -81,3 +81,13 @@ export interface ContributionDay {
     count: number;
     level: number;
 }
+
+/**
+ * GitHub Repository structure for API response
+ */
+export interface GitHubRepo {
+    stargazers_count: number;
+    forks_count: number;
+    name: string;
+}
+

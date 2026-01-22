@@ -21,11 +21,11 @@ const ContactCTA: React.FC = () => {
                         <span className="text-[9px] text-slate-400 font-mono tracking-widest mb-1">01 / GITHUB</span>
                         <span className="text-xs font-bold uppercase tracking-widest group-hover:text-indigo-500 transition-colors">Follow ↗</span>
                     </a>
-                    <a href="https://linkedin.com/in/username" target="_blank" rel="noopener noreferrer" className="group flex flex-col">
+                    <a href="https://linkedin.com/in/raftama" target="_blank" rel="noopener noreferrer" className="group flex flex-col">
                         <span className="text-[9px] text-slate-400 font-mono tracking-widest mb-1">02 / LINKEDIN</span>
                         <span className="text-xs font-bold uppercase tracking-widest group-hover:text-indigo-500 transition-colors">Connect ↗</span>
                     </a>
-                    <a href="https://instagram.com/username" target="_blank" rel="noopener noreferrer" className="group flex flex-col">
+                    <a href="https://instagram.com/___rrrafi" target="_blank" rel="noopener noreferrer" className="group flex flex-col">
                         <span className="text-[9px] text-slate-400 font-mono tracking-widest mb-1">03 / INSTAGRAM</span>
                         <span className="text-xs font-bold uppercase tracking-widest group-hover:text-indigo-500 transition-colors">Photos ↗</span>
                     </a>

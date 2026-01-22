@@ -8,7 +8,7 @@ import Experience from '@/components/Experience';
 import FloatingDock from '@/components/FloatingDock';
 import ContactCTA from '@/components/ContactCTA';
 import MetricsDashboard from '@/components/MetricsDashboard';
-import { GitHubStats, ContributionStats, ContributionDay } from '@/types';
+import { GitHubStats, ContributionStats, ContributionDay, GitHubRepo } from '@/types';
 
 async function getGitHubStats() {
   try {
@@ -22,11 +22,11 @@ async function getGitHubStats() {
     if (!userRes.ok || !reposRes.ok || !contributionsRes.ok) throw new Error('Failed to fetch data');
 
     const userData = await userRes.json();
-    const reposData = await reposRes.json();
+    const reposData: GitHubRepo[] = await reposRes.json();
     const contributionsData = await contributionsRes.json();
 
-    const totalStars = reposData.reduce((acc: number, repo: any) => acc + repo.stargazers_count, 0);
-    const totalForks = reposData.reduce((acc: number, repo: any) => acc + repo.forks_count, 0);
+    const totalStars = reposData.reduce((acc: number, repo: GitHubRepo) => acc + repo.stargazers_count, 0);
+    const totalForks = reposData.reduce((acc: number, repo: GitHubRepo) => acc + repo.forks_count, 0);
 
     const githubStats: GitHubStats = {
       publicRepos: userData.public_repos,

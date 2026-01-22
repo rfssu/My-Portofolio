@@ -29,7 +29,7 @@ export default function GameDevPage() {
     const texts = useMemo(() => [
         greeting,
         "WELCOME TO MY GAME UNIVERSE",
-        "I'M MONARCH // XTRADA404"
+        "I'M XTRADA404"
     ], [greeting]);
 
     const { displayedText } = useTypingAnimation({

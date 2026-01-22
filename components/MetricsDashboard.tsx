@@ -2,9 +2,9 @@
 
 import React, { useMemo, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Github, TrendingUp, Star, Code2, Activity, Zap, LucideIcon } from 'lucide-react';
+import { Github, TrendingUp, Star, Code2, Activity, Users, LucideIcon } from 'lucide-react';
 import { GitHubStats, ContributionStats, ContributionDay } from '@/types';
-import { portfolioMetrics, professionalMetrics, MetricItem } from '@/data/metrics';
+import { quickStats, MetricItem } from '@/data/metrics';
 import { generateContributionCellData, HEATMAP_CONFIG } from '@/lib/contribution-utils';
 import SiteFooter from './layout/SiteFooter';
 
@@ -52,6 +52,32 @@ const MetricCard: React.FC<MetricCardProps> = ({ icon: Icon, label, value, trend
 );
 
 /**
+ * Live visitor indicator - subtle version
+ */
+const LiveIndicator: React.FC = () => {
+    const [count, setCount] = useState(1);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCount(prev => Math.max(1, Math.min(prev + (Math.random() > 0.5 ? 1 : -1), 4)));
+        }, 10000);
+        return () => clearInterval(interval);
+    }, []);
+
+    return (
+        <div className="flex items-center gap-2">
+            <div className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </div>
+            <span className="text-[10px] font-mono text-slate-400">
+                {count} viewing
+            </span>
+        </div>
+    );
+};
+
+/**
  * Contribution heatmap legend
  */
 const HeatmapLegend: React.FC = () => (
@@ -78,13 +104,11 @@ const MetricsDashboard: React.FC<MetricsDashboardProps> = ({
 }) => {
     const loading = !githubStats || !contributionStats;
 
-    // Client-side mount check to prevent hydration mismatch with SVG
     const [isMounted, setIsMounted] = useState(false);
     useEffect(() => {
         setIsMounted(true);
     }, []);
 
-    // Memoize contribution cells using utility function
     const contributionCells = useMemo(
         () => isMounted ? generateContributionCellData(contributionData) : [],
         [contributionData, isMounted]
@@ -95,44 +119,21 @@ const MetricsDashboard: React.FC<MetricsDashboardProps> = ({
             <div className="max-w-7xl mx-auto px-6 md:px-12">
 
                 {/* Section Title */}
-                <div className="flex flex-col items-center mb-12">
-                    <h2 className="text-xs md:text-base tracking-[0.2em] font-bold text-slate-900 dark:text-white uppercase font-mono text-center">
-                        Live Metrics
-                    </h2>
-                    <div className="h-[2px] w-8 md:w-12 bg-indigo-500 mt-1 md:mt-2"></div>
+                <div className="flex items-center justify-between mb-12">
+                    <div className="flex flex-col">
+                        <h2 className="text-xs md:text-base tracking-[0.2em] font-bold text-slate-900 dark:text-white uppercase font-mono">
+                            Live Metrics
+                        </h2>
+                        <div className="h-[2px] w-8 md:w-12 bg-indigo-500 mt-1 md:mt-2"></div>
+                    </div>
+                    {isMounted && <LiveIndicator />}
                 </div>
 
-                {/* Portfolio Performance */}
-                <div className="mb-12 md:mb-16">
-                    <div className="flex items-center gap-2 mb-6">
-                        <Zap className="w-4 h-4 text-slate-900 dark:text-white" />
-                        <h3 className="text-sm md:text-base font-bold uppercase tracking-tight">Portfolio Performance</h3>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
-                        {portfolioMetrics.map((metric, idx) => (
-                            <MetricCard key={idx} {...metric} loading={false} />
-                        ))}
-                    </div>
-                </div>
-
-                {/* Professional Metrics */}
-                <div className="mb-12 md:mb-16">
-                    <div className="flex items-center gap-2 mb-6">
-                        <TrendingUp className="w-4 h-4 text-slate-900 dark:text-white" />
-                        <h3 className="text-sm md:text-base font-bold uppercase tracking-tight">Professional Impact</h3>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
-                        {professionalMetrics.map((metric, idx) => (
-                            <MetricCard key={idx} {...metric} loading={false} />
-                        ))}
-                    </div>
-                </div>
-
-                {/* GitHub Contributions */}
+                {/* GitHub Contributions - Primary Focus */}
                 <div className="mb-12 md:mb-16">
                     <div className="flex items-center gap-2 mb-6">
                         <Github className="w-4 h-4 text-slate-900 dark:text-white" />
-                        <h3 className="text-sm md:text-base font-bold uppercase tracking-tight">GitHub Contributions</h3>
+                        <h3 className="text-sm md:text-base font-bold uppercase tracking-tight">GitHub Activity</h3>
                         {loading && <span className="text-[9px] text-slate-400 animate-pulse">Loading...</span>}
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
@@ -148,7 +149,7 @@ const MetricsDashboard: React.FC<MetricsDashboardProps> = ({
                             icon={TrendingUp}
                             label="Current Streak"
                             value={contributionStats?.currentStreak.toString() || '—'}
-                            trend="Consecutive Days"
+                            trend="Days"
                             color="text-green-500"
                             loading={loading}
                         />
@@ -156,7 +157,7 @@ const MetricsDashboard: React.FC<MetricsDashboardProps> = ({
                             icon={Star}
                             label="Longest Streak"
                             value={contributionStats?.longestStreak.toString() || '—'}
-                            trend="Dedication"
+                            trend="Record"
                             color="text-yellow-500"
                             loading={loading}
                         />
@@ -202,7 +203,20 @@ const MetricsDashboard: React.FC<MetricsDashboardProps> = ({
                     )}
                 </div>
 
-                {/* Site Footer - Extracted Component */}
+                {/* Quick Stats - Simplified */}
+                <div className="mb-12 md:mb-16">
+                    <div className="flex items-center gap-2 mb-6">
+                        <TrendingUp className="w-4 h-4 text-slate-900 dark:text-white" />
+                        <h3 className="text-sm md:text-base font-bold uppercase tracking-tight">Quick Stats</h3>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+                        {quickStats.map((metric, idx) => (
+                            <MetricCard key={idx} {...metric} loading={false} />
+                        ))}
+                    </div>
+                </div>
+
+                {/* Site Footer */}
                 <SiteFooter />
 
             </div>

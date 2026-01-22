@@ -24,28 +24,47 @@ const Projects: React.FC = () => {
                     <div className="h-[2px] w-8 md:w-12 bg-indigo-500 mt-1 md:mt-2"></div>
                 </div>
 
-                {/* PROJECT LIST VIEW */}
-                <div className="divide-y divide-slate-100 dark:divide-slate-800">
+                {/* PROJECT GRID - 2 Column Layout */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                     {projects.map((project, index) => (
                         <motion.div
                             key={project.id}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.1 }}
                             onClick={() => setSelectedProject(project)}
-                            className="group cursor-pointer py-4 md:py-10 flex items-center justify-between gap-3 md:gap-6 hover:px-2 md:hover:px-4 transition-all duration-500"
+                            className="group cursor-pointer p-4 md:p-6 border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 transition-all duration-300 bg-slate-50/50 dark:bg-slate-900/50"
                         >
-                            <div className="flex items-start gap-3 md:gap-8 flex-1">
-                                <span className="text-[10px] md:text-xs font-mono text-slate-400 mt-1 md:mt-2 font-bold">
-                                    /{String(index + 1).padStart(2, '0')}
-                                </span>
-                                <div className="flex-1">
-                                    <h3 className="text-base md:text-2xl font-black uppercase tracking-tighter group-hover:text-indigo-500 transition-colors duration-300">
-                                        {project.title}
-                                    </h3>
-                                    <p className="text-[10px] md:text-xs tracking-wider text-slate-500 dark:text-slate-400 mt-1 md:mt-2 font-medium line-clamp-1">
-                                        {project.tech.join(' • ')}
-                                    </p>
-                                </div>
+
+                            {/* Title */}
+                            <h3 className="text-lg md:text-xl font-black uppercase tracking-tighter mt-3 group-hover:text-indigo-500 transition-colors duration-300">
+                                {project.title}
+                            </h3>
+
+                            {/* Description Preview */}
+                            <p className="text-xs md:text-sm text-slate-500 dark:text-slate-400 mt-2 line-clamp-2 font-medium">
+                                {project.description}
+                            </p>
+
+                            {/* Tech Stack */}
+                            <div className="flex items-center gap-2 mt-4 flex-wrap">
+                                {project.tech.slice(0, 7).map((t) => (
+                                    <span key={t} className="text-[9px] md:text-[10px] font-mono px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 uppercase">
+                                        {t}
+                                    </span>
+                                ))}
+                                {project.tech.length > 7 && (
+                                    <span className="text-[9px] md:text-[10px] font-mono text-slate-400">
+                                        +{project.tech.length - 7}
+                                    </span>
+                                )}
                             </div>
-                            <ArrowRight className="w-4 h-4 md:w-5 md:h-5 text-slate-300 group-hover:text-indigo-500 group-hover:translate-x-3 transition-all duration-500 shrink-0" />
+
+                            {/* Arrow indicator */}
+                            <div className="flex justify-end mt-4">
+                                <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-indigo-500 group-hover:translate-x-1 transition-all duration-300" />
+                            </div>
                         </motion.div>
                     ))}
                 </div>

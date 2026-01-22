@@ -45,35 +45,35 @@ export interface AwardItem {
 export const careers: CareerItem[] = [
     {
         id: 'career-1',
-        period: '2024 — Present',
+        period: 'Jan 2025 — Present',
         title: 'Full-Stack Developer',
         company: 'Quadrant Co.',
-        location: 'Project-based',
-        description: 'Collaborated within a specialized IT team to architect and deliver high-performance web solutions.'
+        location: 'Remote (Contract)',
+        description: 'Architected scalable web solutions using Next.js and Laravel. Collaborated with the team to translate business needs into production code.'
     },
     {
         id: 'career-2',
-        period: '2024 — Present',
-        title: 'Game Developer & Designer',
-        company: 'Ourmind Studio',
-        location: 'Personal Project',
-        description: 'Independent game conceptualization and technical implementation of gameplay mechanics.'
+        period: 'Oct 2024 — Feb 2025',
+        title: 'Program Development (Data Analyst)',
+        company: 'PT Surya Citra Media (SCM)',
+        location: 'Jakarta',
+        description: 'Synthesized complex viewership data into actionable insights. Collaborated with cross-functional teams to optimize content strategy.'
     },
     {
         id: 'career-3',
-        period: 'Oct 2024 — Feb 2025',
-        title: 'Program Development',
-        company: 'PT Surya Citra Media',
-        location: 'Jakarta',
-        description: 'Assisted in strategic program planning and creative development for major media content.'
+        period: 'Aug 2022 — Aug 2023',
+        title: 'Co-Founder & Tech Lead',
+        company: 'Inclue Indonesia',
+        location: 'Yogyakarta',
+        description: 'Led technical strategy for a sociopreneurship startup. Secured "Top 3 The Gade" award by aligning tech product with social impact goals.'
     },
     {
         id: 'career-4',
-        period: 'Feb 2023 — Jun 2023',
-        title: 'Research & Development',
-        company: 'NET MEDIA TAMA TELEVISI',
-        location: 'Jakarta',
-        description: 'Conducted comprehensive research on industry trends to identify audience preferences.'
+        period: 'Feb 2022 — Jun 2022',
+        title: 'Assistant Lecturer (Python/OOP)',
+        company: 'Universitas Muhammadiyah Yogyakarta',
+        location: 'Yogyakarta',
+        description: 'Mentored students in Object-Oriented Programming (OOP) and Python. Debugged complex code logic and facilitated lab sessions.'
     }
 ];
 
